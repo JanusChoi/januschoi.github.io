@@ -48,9 +48,9 @@ file_type = 'pdf'
 ## 检索词或检索式
 keyword = '智慧零售'
 ## Zotero接口参数
-library_id = '5012819'
+library_id = ''
 library_type = 'user'
-api_key = 'FkXpNmTlLwqDnhKxS2n2zgoj'
+api_key = ''
 
 search_string = 'filetype:{}+{}'.format(file_type, keyword)
 pages = range(start_page - 1, end_page)
