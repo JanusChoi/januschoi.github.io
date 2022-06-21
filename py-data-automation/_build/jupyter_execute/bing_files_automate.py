@@ -139,7 +139,7 @@ def crawler(param):
             mycol.insert_one(file_data)
 
 
-# In[6]:
+# In[14]:
 
 
 # pdf解释函数
@@ -196,7 +196,7 @@ for page in pages:  # loop cityname
 q.join()
 
 
-# In[8]:
+# In[15]:
 
 
 # pdf解释运行
