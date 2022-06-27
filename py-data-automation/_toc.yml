@@ -3,5 +3,10 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: bing_files_automate
+parts:
+  - caption: 安身立命
+    chapters:
+    - file: stats_time_log_2022HalfYear
+  - caption: 唯手熟尔
+    chapters:
+    - file: bing_files_automate
