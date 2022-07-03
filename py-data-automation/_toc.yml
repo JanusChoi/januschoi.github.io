@@ -10,3 +10,5 @@ parts:
   - caption: 唯手熟尔
     chapters:
     - file: bing_files_automate
+    - file: apache_top_levels
+    - file: wanfang_pdf_rename
