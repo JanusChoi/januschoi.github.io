@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: 个人数据-你的工作加速器
-author: 蔡颖
+title: 歪思大数据
+author: W先森
 logo: logo.png
 exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 

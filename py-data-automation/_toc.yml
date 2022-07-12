@@ -4,6 +4,18 @@
 format: jb-book
 root: intro
 parts:
+  - caption: 数据思维十讲
+    chapters:
+    - file: data_mind_01
+    - file: data_mind_02
+    - file: data_mind_03
+    - file: data_mind_04
+    - file: data_mind_05
+    - file: data_mind_06
+    - file: data_mind_07
+    - file: data_mind_08
+    - file: data_mind_09
+    - file: data_mind_10
   - caption: 安身立命
     chapters:
     - file: stats_time_log_2022HalfYear
@@ -12,3 +24,4 @@ parts:
     - file: bing_files_automate
     - file: apache_top_levels
     - file: wanfang_pdf_rename
+    - file: anythingToPDF

@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>链接生成PDF并保存Zotero &#8212; 歪思大数据</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="万方下载论文重命名" href="wanfang_pdf_rename.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">歪思大数据</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    个人数据–你的工作加速器
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  安身立命
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stats_time_log_2022HalfYear.html">
+   2022年半年总结
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  唯手熟尔
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bing_files_automate.html">
+   批量下载文件并存入Zotero（cn.bing.com）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="apache_top_levels.html">
+   Apache顶级项目信息提取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wanfang_pdf_rename.html">
+   万方下载论文重命名
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   链接生成PDF并保存Zotero
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/JanusChoi/personal-data-automation/master?urlpath=tree/docs/anythingToPDF.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/JanusChoi/personal-data-automation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2FanythingToPDF.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/anythingToPDF.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>链接生成PDF并保存Zotero</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="pdfzotero">
+<h1>链接生成PDF并保存Zotero<a class="headerlink" href="#pdfzotero" title="Permalink to this headline">#</a></h1>
+<p>将免登录的页面链接，生成pdf文件，并写入到Zotero
+使用场景举例：</p>
+<ul class="simple">
+<li><p>需要收藏一篇微信公众号到Zotero</p></li>
+<li><p>在程序中输入链接，如：<a class="reference external" href="https://mp.weixin.qq.com/s/IFdFunIx9YoVeXIXz_GpUg">https://mp.weixin.qq.com/s/IFdFunIx9YoVeXIXz_GpUg</a></p></li>
+<li><p>运行程序</p></li>
+<li><p>程序将公众号内容自动导出pdf，并存储到Zotero，类型=document</p></li>
+</ul>
+<p>前置条件：</p>
+<ul class="simple">
+<li><p>wkhtmltopdf: 安装参考 <a class="reference external" href="https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf">https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf</a></p></li>
+<li><p>pdfkit: pip install pdfkit</p></li>
+</ul>
+<p>已知缺陷：</p>
+<ul class="simple">
+<li><p>pdfkit导出时一些图片无法保存到pdf</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdfkit</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span><span class="o">,</span><span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">pyzotero</span> <span class="kn">import</span> <span class="n">zotero</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## 要保存的网页链接</span>
+<span class="n">webpage_url</span> <span class="o">=</span> <span class="s1">&#39;https://mp.weixin.qq.com/s/Y5bEBezJupY1GQrrWxPaXw&#39;</span>
+<span class="c1">## 存储路径</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;/Users/januswing/data&#39;</span>
+<span class="c1">## Zotero接口参数</span>
+<span class="n">library_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">library_type</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1">## Zotero Collection 名称（可不指定）</span>
+<span class="n">target_collection_name</span> <span class="o">=</span> <span class="s1">&#39;项目文档&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;authority&#39;</span><span class="p">:</span> <span class="s1">&#39;mp.weixin.qq.com&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;accept-language&#39;</span><span class="p">:</span> <span class="s1">&#39;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,ja-JP;q=0.6,ja;q=0.5,zh-TW;q=0.4&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;cache-control&#39;</span><span class="p">:</span> <span class="s1">&#39;max-age=0&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;if-modified-since&#39;</span><span class="p">:</span> <span class="s1">&#39;Tue, 12 Jul 2022 14:33:55 +0800&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-ch-ua&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;.Not/A)Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;103&quot;, &quot;Chromium&quot;;v=&quot;103&quot;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-ch-ua-mobile&#39;</span><span class="p">:</span> <span class="s1">&#39;?0&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-ch-ua-platform&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;macOS&quot;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-fetch-dest&#39;</span><span class="p">:</span> <span class="s1">&#39;document&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-fetch-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;navigate&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-fetch-site&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sec-fetch-user&#39;</span><span class="p">:</span> <span class="s1">&#39;?1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;upgrade-insecure-requests&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36&#39;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">webpage_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">whole_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## 提取文章标题 &amp; 公众号名称</span>
+<span class="n">document_title</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;div[id=&quot;meta_content&quot;]&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">span</span><span class="o">.</span><span class="n">a</span><span class="p">:</span>
+        <span class="n">document_author</span> <span class="o">=</span> <span class="n">span</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1">## 提取文章发布时间</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;&quot;[0-9]+&quot;,0,document.getElementById\(&quot;publish_time&quot;\)&#39;</span><span class="p">)</span>
+<span class="n">publish_timestamp</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">whole_text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;,0,document.getElementById(&quot;publish_time&quot;)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1">## 转换成localtime</span>
+<span class="n">time_local</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">publish_timestamp</span><span class="p">))</span>
+<span class="c1">## 转换成新的时间格式</span>
+<span class="n">document_publish_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span><span class="n">time_local</span><span class="p">)</span>
+<span class="n">file_timemark</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">time_local</span><span class="p">)</span>
+<span class="c1">## 生成并保存为pdf</span>
+<span class="n">document_save_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">document_title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">file_timemark</span><span class="p">)</span>
+<span class="n">pdfkit</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">webpage_url</span><span class="p">,</span> <span class="n">document_save_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 连接 Zotero</span>
+<span class="n">zot</span> <span class="o">=</span> <span class="n">zotero</span><span class="o">.</span><span class="n">Zotero</span><span class="p">(</span><span class="n">library_id</span><span class="p">,</span> <span class="n">library_type</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
+<span class="c1"># 提取 collections 信息</span>
+<span class="n">collections</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">zot</span><span class="o">.</span><span class="n">collections</span><span class="p">():</span>
+    <span class="n">collections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+
+<span class="n">df_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">:</span>
+    <span class="n">df_col</span> <span class="o">=</span> <span class="n">df_col</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">target_collection_name</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+    <span class="n">target_collection_id</span> <span class="o">=</span> <span class="n">df_col</span><span class="p">[</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_collection_name</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存Zotero条目</span>
+<span class="c1">## 请保证云存储空间充足</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">zot</span><span class="o">.</span><span class="n">item_template</span><span class="p">(</span><span class="s1">&#39;document&#39;</span><span class="p">)</span>
+<span class="n">template</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">document_title</span>
+<span class="n">template</span><span class="p">[</span><span class="s1">&#39;creators&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;creatorType&#39;</span><span class="p">:</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">document_author</span><span class="p">}]</span>
+<span class="n">template</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">document_publish_time</span>
+<span class="n">template</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">webpage_url</span>
+<span class="k">if</span> <span class="n">target_collection_name</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+    <span class="n">template</span><span class="p">[</span><span class="s1">&#39;collections&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_collection_id</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">zot</span><span class="o">.</span><span class="n">create_items</span><span class="p">([</span><span class="n">template</span><span class="p">])</span>
+<span class="n">item_id</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;successful&#39;</span><span class="p">][</span><span class="s1">&#39;0&#39;</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+<span class="n">attachment_path</span> <span class="o">=</span> <span class="n">document_save_path</span>
+<span class="n">zot</span><span class="o">.</span><span class="n">attachment_simple</span><span class="p">([</span><span class="n">attachment_path</span><span class="p">],</span> <span class="n">item_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: [{&#39;itemType&#39;: &#39;attachment&#39;,
+   &#39;linkMode&#39;: &#39;imported_file&#39;,
+   &#39;title&#39;: &#39;一本关于好奇心的书-读《Why》_20220610.pdf&#39;,
+   &#39;accessDate&#39;: &#39;&#39;,
+   &#39;note&#39;: &#39;&#39;,
+   &#39;tags&#39;: [],
+   &#39;collections&#39;: [],
+   &#39;relations&#39;: {},
+   &#39;contentType&#39;: &#39;&#39;,
+   &#39;charset&#39;: &#39;&#39;,
+   &#39;filename&#39;: &#39;/Users/januswing/data/一本关于好奇心的书-读《Why》_20220610.pdf&#39;,
+   &#39;md5&#39;: None,
+   &#39;mtime&#39;: None,
+   &#39;parentItem&#39;: &#39;94MCQANU&#39;,
+   &#39;key&#39;: &#39;TQ6RW2GJ&#39;}],
+ &#39;failure&#39;: [],
+ &#39;unchanged&#39;: []}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "py37"
+        },
+        kernelOptions: {
+            kernelName: "py37",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'py37'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="wanfang_pdf_rename.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">万方下载论文重命名</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By W先森<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
