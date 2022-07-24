@@ -25,3 +25,4 @@ parts:
     - file: apache_top_levels
     - file: wanfang_pdf_rename
     - file: anythingToPDF
+    - file: word2pdf
