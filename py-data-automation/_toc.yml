@@ -19,6 +19,7 @@ parts:
   - caption: 安身立命
     chapters:
     - file: stats_time_log_2022HalfYear
+    - file: 2022FullYear
   - caption: 唯手熟尔
     chapters:
     - file: bing_files_automate
