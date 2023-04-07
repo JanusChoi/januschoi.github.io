@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>让GPT帮你读文档：一种简单的实现方法 &#8212; 歪思大数据</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'embeding_test';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Word文档资料整理工作流" href="word2pdf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    个人数据–你的工作加速器
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据思维十讲</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mind_01.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_02.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_03.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_04.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_05.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_06.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_07.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_08.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_09.html">数据思维 第N讲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_10.html">数据思维 第N讲</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">安身立命</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats_time_log_2022HalfYear.html">2022年半年总结</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2022FullYear.html">2022年总结：迷途知返</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">唯手熟尔</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bing_files_automate.html">批量下载文件并存入Zotero（cn.bing.com）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_top_levels.html">Apache顶级项目信息提取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wanfang_pdf_rename.html">万方下载论文重命名</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anythingToPDF.html">链接生成PDF并保存Zotero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word2pdf.html">Word文档资料整理工作流</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">让GPT帮你读文档：一种简单的实现方法</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2Fembeding_test.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/embeding_test.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>让GPT帮你读文档：一种简单的实现方法</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="gpt">
+<h1>让GPT帮你读文档：一种简单的实现方法<a class="headerlink" href="#gpt" title="Permalink to this heading">#</a></h1>
+<p>GPT-4阅读文档的原理与人类阅读类似。想象一下，当您拿到一份数十页的PDF文件时，您会先关注哪些部分？摘要、总结以及目录结构。接着，您会在心里提出若干问题（大约3-5个），并带着这些问题继续阅读。</p>
+<p>为了借助GPT-4实现高效阅读，并尝试突破单次 token 数量限制，我们需要使用官方提供的 embedding 工具箱。简单来说，embedding 的原理就是将一段文本压缩成一组向量数据，就像是将文章片段存储到大脑中。</p>
+<p>因此，我们的程序分为以下几个步骤：</p>
+<p>第一步：清洗并切片PDF文档</p>
+<p>对PDF文档进行清洗，去除重复的页眉、页脚以及目录中的过长连字符，以尽量减少API调用次数（毕竟每次调用都需要花费）。
+将文档按段落切片，对于过长的段落则拆分成两部分。
+将所有切片输入API生成embedding，并将其存储到 parquet 文件格式中，便于后续复用。</p>
+<p>第二步：生成概述和提出问题</p>
+<p>读取文档前10页（不超过4096个token）的数据量，提交给GPT-4以生成概述。
+让GPT-4根据概述提出五个相关问题。至此，阅读文档和提出问题的第一步已完成。</p>
+<p>第三步：回答问题</p>
+<p>以“问题一”为例，我们需要执行以下操作：
+将“问题一”输入API生成embedding-1。
+将embedding-1与之前生成的embedding集合进行一一比对，计算余弦相似度。
+对数据进行排序，筛选出Top N条相似的embedding。
+将第3步筛选出的embedding原文提交给GPT-4，让其生成一段通顺的回答。
+输出第3步Top N的embedding原文，以便了解答案来源。</p>
+<p>重复以上过程四次，即可让GPT-4回答五个问题。将所有内容整合到一个Markdown文件中保存即可。</p>
+<p>第四步：提供额外的问题支持</p>
+<p>有时，我们对GPT-4提出的问题可能并不满意，因此需要继续向文档提问。在这里，我们使用Python的input函数在命令行中执行上述提问流程。当我们提出所有想要问的问题后，这些后续问题的回答将整合到另一个Markdown文件中，并保存在与PDF文件同一路径下。
+通过以上步骤，我们可以利用GPT-4更高效地阅读文档，并对文档内容进行深入理解。这种方法既节省了时间，又提高了工作效率，使得我们能够更轻松地处理大量文档资料。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">openai.embeddings_utils</span> <span class="kn">import</span> <span class="n">get_embedding</span><span class="p">,</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">logger</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">pdfplumber</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_embeddings</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pprint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">get_embedding</span><span class="p">(</span>
+        <span class="n">query</span><span class="p">,</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-embedding-ada-002&quot;</span>
+    <span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;similarity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">query_embedding</span><span class="p">))</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;similarity&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">sources</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">sources</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Page &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;page&#39;</span><span class="p">]):</span> <span class="n">results</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">][:</span><span class="mi">150</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;...&#39;</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_prompt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">user_input</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">search_embeddings</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">&quot;paper&quot;</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a large language model whose expertise is reading and summarizing scientific papers.</span>
+<span class="s2">        You are given a query and a series of text embeddings from a paper in order of their cosine similarity to the query.</span>
+<span class="s2">        You must take the given embeddings and return a very detailed summary of the paper that answers the query.</span>
+<span class="s2">            Given the question: &quot;&quot;&quot;</span><span class="o">+</span> <span class="n">user_input</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">            and the following embeddings as data: </span>
+
+<span class="s2">            1.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            2.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">            Return a concise and accurate answer:&quot;&quot;&quot;</span>
+    <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">&quot;handbook&quot;</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a large language model whose expertise is reading and summarizing financial handbook.</span>
+<span class="s2">        You are given a query and a series of text embeddings from a handbook in order of their cosine similarity to the query.</span>
+<span class="s2">        You must take the given embeddings and return a very detailed answer in Chinese of the handbook that answers the query.</span>
+<span class="s2">        If not necessary, your answer please use the original text as much as possible.</span>
+<span class="s2">        You should also ensure that your response is written in clear and concise Chinese, using appropriate grammar and vocabulary.  </span>
+<span class="s2">        Additionally, your response should focus on answering the specific query provided..</span>
+<span class="s2">            Given the question: &quot;&quot;&quot;</span><span class="o">+</span> <span class="n">user_input</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            and the following embeddings as data: </span>
+
+<span class="s2">            1.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            2.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">            Return a concise and accurate answer:&quot;&quot;&quot;</span>
+    <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">&quot;contract&quot;</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;As a large language model specializing in reading and summarizing, your task is to read a query and a sequence of text inputs sorted by their cosine similarity to the query.</span>
+<span class="s2">         Your goal is to provide a Chinese answer to the query using the given padding. If possible, please use the original text of your answer. </span>
+<span class="s2">         Please ensure that your response adheres to the terms of the agreement. Your response should focus on addressing the specific query provided, </span>
+<span class="s2">         providing relevant information and details based on the input texts&#39; content. You should also strive for clarity and conciseness in your response, </span>
+<span class="s2">         summarizing key points while maintaining accuracy and relevance. Please note that you should prioritize understanding the context and meaning </span>
+<span class="s2">         behind both the query and input texts before generating a response.</span>
+<span class="s2">            Given the question: &quot;&quot;&quot;</span><span class="o">+</span> <span class="n">user_input</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            and the following embeddings as data: </span>
+
+<span class="s2">            1.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            2.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">            Return a concise and accurate answer:&quot;&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;As a language model specialized in reading and summarizing documents,your task is to provide a concise answer in Chinese based on a given query and a series of text embeddings from the document.The embeddings are provided in order of their cosine similarity to the query. Your response should use as much original text as possible.Your answer should be highly concise and accurate, providing relevant information that directly answers the query.You should ensure that your response is written in clear and concise Chinese, using appropriate grammar and vocabulary.Please note that you must use the provided text embeddings to generate your response, which means you will need to understand how they relate to the original document.Your response should focus on answering the specific query provided.Given the question: &quot;&quot;&quot;</span><span class="o">+</span> <span class="n">user_input</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot; and the following embeddings as data: 1.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;2.&quot;&quot;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Done creating prompt&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prompt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行环境初始化</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:1088&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;https_proxy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:1088&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">organization</span> <span class="o">=</span> <span class="s2">&quot;org-your_org&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-your_api_key&quot;</span>
+
+<span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pdf文档输入</span>
+
+<span class="n">pdf_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/januswing/data/PDFReadTest/大数据在路况监测中的应用（英） PIARC 2023.pdf&quot;</span>
+<span class="n">file_name_prefix</span> <span class="o">=</span> <span class="n">pdf_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pdfplumber</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span>
+<span class="n">number_of_pages</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">)</span>
+<span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">分析文档</span><span class="si">{}</span><span class="s2">，总页数</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_report</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">,</span> <span class="n">number_of_pages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取pdf内容</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">paper_text</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pre_read_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">with</span> <span class="n">pdfplumber</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">pdf</span><span class="p">:</span>
+    
+    <span class="c1"># 对每一页的文本进行处理</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_read_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3000</span><span class="p">:</span>
+            <span class="n">pre_read_content</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pre_read_content</span><span class="p">,</span> <span class="n">pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extract_text</span><span class="p">())</span> <span class="c1"># 读取前10页的内容</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pre_read_content</span> <span class="o">=</span> <span class="n">pre_read_content</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3000</span><span class="p">]</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">pages</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">extract_words</span><span class="p">(</span><span class="n">extra_attrs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">])</span>
+        <span class="n">blob_font_size</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">blob_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">processed_text</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">blob_font_size</span><span class="p">:</span>
+                <span class="n">blob_text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">word</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">blob_text</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2000</span><span class="p">:</span> <span class="c1">#这个数值控制的是一个段落可能最小的长度</span>
+                    <span class="n">processed_text</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="n">blob_font_size</span><span class="p">,</span>
+                        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\.{2,}&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">blob_text</span><span class="p">),</span>
+                        <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="n">i</span>
+                    <span class="p">})</span>
+                    <span class="n">blob_font_size</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">blob_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">blob_font_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">blob_text</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">processed_text</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="n">blob_font_size</span><span class="p">,</span>
+                        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\.{2,}&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">blob_text</span><span class="p">),</span>
+                        <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="n">i</span>
+                    <span class="p">})</span>
+                <span class="n">blob_font_size</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span>
+                <span class="n">blob_text</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+            <span class="n">paper_text</span> <span class="o">+=</span> <span class="n">processed_text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成embeddings</span>
+<span class="n">embeddings_file_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.parquet&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name_prefix</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">embeddings_file_path</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">embeddings_file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;pyarrow&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">filtered_pdf</span><span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">paper_text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">8000</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][:</span><span class="mi">8000</span><span class="p">]</span>
+        <span class="n">filtered_pdf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filtered_pdf</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="n">embedding_model</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-ada-002&quot;</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Generating embeddings&quot;</span><span class="p">):</span>
+            <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_embedding</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">embedding_model</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embeddings</span>
+    <span class="c1"># 保存留后续复用embeddings</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">embeddings_file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;pyarrow&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输出文章概述</span>
+<span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;你是信息分析员&#39;</span>
+<span class="n">i_say</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;对下面的文章片段用中文做概述，文章内容是 ```</span><span class="si">{</span><span class="n">pre_read_content</span><span class="si">}</span><span class="s1">```&#39;</span>
+
+<span class="n">system_content</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prefix</span><span class="p">}</span>
+<span class="n">user_content_final</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">i_say</span><span class="p">}</span>
+<span class="n">prompt_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">system_content</span><span class="p">)</span>
+<span class="n">prompt_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_content_final</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">prompt_messages</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">overview</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+<span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_report</span><span class="p">,</span> <span class="n">overview</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 提出问题</span>
+<span class="n">i_say</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;对这篇文章提出可能的五个问题&#39;</span>
+
+<span class="n">user_content_final</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">i_say</span><span class="p">}</span>
+<span class="n">prompt_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_content_final</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">prompt_messages</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">questions</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+<span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">可能的问题：</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_report</span><span class="p">,</span> <span class="n">questions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 对问题逐一回答</span>
+<span class="n">qlist</span> <span class="o">=</span> <span class="n">questions</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">qnum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">qlist</span><span class="p">:</span>
+    <span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#     if qnum &gt; 0:</span>
+<span class="c1">#         prompt_messages.pop()</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">i_say</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">create_prompt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+
+    <span class="n">user_content_final</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">i_say</span><span class="p">}</span>
+    <span class="n">prompt_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_content_final</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">prompt_messages</span><span class="p">)</span>
+
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">res_status</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;finish_reason&#39;</span><span class="p">]</span>
+    <span class="n">res_content</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">res_content</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span> <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="n">sources</span><span class="p">}</span>
+    <span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">回答</span><span class="si">{}</span><span class="s2">：</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_report</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;sources&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">full_report</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">来自原文</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_report</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">qnum</span> <span class="o">=</span> <span class="n">qnum</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">current_date_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.md&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name_prefix</span><span class="p">,</span> <span class="n">current_date_time</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">full_report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># custom question answering</span>
+<span class="n">current_date_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+<span class="n">history_filename</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_chat_</span><span class="si">{}</span><span class="s2">.md&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_name_prefix</span><span class="p">,</span> <span class="n">current_date_time</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">ask_question</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">history_filename</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter your question: &quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">i_say</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">create_prompt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+
+    <span class="n">user_content_final</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">i_say</span><span class="p">}</span>
+    <span class="n">prompt_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_content_final</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">prompt_messages</span><span class="p">)</span>
+
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">res_status</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;finish_reason&#39;</span><span class="p">]</span>
+    <span class="n">res_content</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">res_content</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span> <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="n">sources</span><span class="p">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">的回答：</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">]))</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">的回答：</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;sources&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;来自原文</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="s2">&quot;来自原文</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+    <span class="c1"># Save conversation history</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">history_filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ask_question</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">history_filename</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ctrl+C detected. Exiting the program.&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "py37"
+        },
+        kernelOptions: {
+            name: "py37",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'py37'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="word2pdf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Word文档资料整理工作流</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By W先森
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
