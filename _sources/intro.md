@@ -1,17 +1,11 @@
-# 个人数据--你的工作加速器
+# Welcome to your Jupyter Book
 
-## 欢迎
+This is a small sample book to give you a feel for how book content is
+structured.
+It shows off a few of the major file types, as well as some sample content.
+It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
 
-todo
-
-## 关于个人数据管理
-
-## 实用工具
-- bing文件自动下载并写入Zotero
-
-
-todo
-
+Check out the content pages bundled with this sample book to see more.
 
 ```{tableofcontents}
 ```
