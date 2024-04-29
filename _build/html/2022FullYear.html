@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2022年总结：迷途知返 &#8212; 歪思大数据</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2022FullYear';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="批量下载文件并存入Zotero（cn.bing.com）" href="bing_files_automate.html" />
+    <link rel="prev" title="2022年半年总结" href="stats_time_log_2022HalfYear.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    个人数据–你的工作加速器
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据思维十讲</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mind_toc.html">【专栏】数据思维目录大纲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_00.html">【专栏】数据思维00：数据迷阵 Data Matrix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">安身立命</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats_time_log_2022HalfYear.html">2022年半年总结</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2022年总结：迷途知返</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">唯手熟尔</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bing_files_automate.html">批量下载文件并存入Zotero（cn.bing.com）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_top_levels.html">Apache顶级项目信息提取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wanfang_pdf_rename.html">万方下载论文重命名</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anythingToPDF.html">链接生成PDF并保存Zotero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word2pdf.html">Word文档资料整理工作流</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embeding_test.html">让GPT帮你读文档：一种简单的实现方法</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2F2022FullYear.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2022FullYear.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2022年总结：迷途知返</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">两瓣苦瓜</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>2022年总结：迷途知返<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<div class="section" id="id2">
+<h2>两瓣苦瓜<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>如果将2022掰开两半，那一半是苦瓜，另一半也是苦瓜。这不是在模仿鲁迅，也并非在讲段子。只是这两块苦瓜各有各的苦，也各有各的回甘。</p>
+<p>前半年转身成为数据产品经理，但不擅长规划且热爱技术的人，总忍不住下手去解决各种各样的技术问题。所谓“get your hands dirty”，我想：“my hands are always dirty”。年中Jack哥问道：为什么你总有那么多热情去研究这些东西？我说：“忍不住，没法忍。”我寻觅心中执念，大概是这么两条：</p>
+<ul class="simple">
+<li><p>重复到第三次的工作，就要考虑如何自动化，要剥削机器，而非人类；</p></li>
+<li><p>重复到第三次的自动化，就要考虑如何工具化或产品化，要可复制，可放大。</p></li>
+</ul>
+<p>因此我会偏好开放而非封闭，无论是在学习方向选择和平台工具选型都会如此考虑。比如开源 &gt; 闭源、开放协议 &gt; 封闭生态、多处适用 &gt; 单一平台可用，等等。</p>
+<p>技术也具备类似属性，因为<strong>技术是工具的工具</strong>，手上没有好用工具时，你随时可以造一个。</p>
+<p>技术转产品并不困难，前提是你要跳出以往的技术视角，尝试站在用户角度考虑问题，并且将这个用户想象成一个什么都不懂的小孩。</p>
+<p>也许是因为曾经当老师的经历，产品视角的转化于我而言没有十分困难，再加上ToB产品经理偏重商业分析而非用户体验，有过多年BI项目实施经验也为我加上了BUFF，产品设计过程反倒感到轻松。</p>
+<p>那苦在何处？苦在规划，我特别不擅长规划，不擅长构想远期产品终归会长成的那个样子。我秉持着一个“让其自然生长”的观念，觉得只要将眼下问题扎扎实实地解决之后，下一步的构思才能获得充足养分，得以涌现。但这无疑不够快，也不能够给到上面充足的、可对外吹嘘的材料。因此，我还得逼着自己去空想，去规划。</p>
+<p>那时，我将《好战略，坏战略》精读完，却又陷入了另一个苦况，用书中知识去套目前的发展态势，发现是战略定得不好，所以团队才会那么累。这样的抵触让我无法专注到手上的工作，而这却是完全没有必要的。我需要的尽可能又快又好地将作品做出来，不管对错，有比无要强。以作品为导向，是我此刻立下的心愿。</p>
+<hr class="docutils" />
+<p>下半年回归技术经理，然而却跟我想象中互联网公司生态下的技术经理大有不同。</p>
+<p>在互联网，技术经理除了负责制定技术路线，解决技术难题，也是得实际上手解决那些无人能解的技术问题的，而目前更多却只是在做“信分变现”。信分变现指的是，当你要去做一份咨询方案时，你会整理大量公开信息，整合为一个设计方案，提交给客户。获得客户首肯之后，则要进一步整理诸如：需求调研材料，软件报价，软件工程初步设计等等一大堆文档工作。</p>
+<p>然而少了技术活儿的我怎能活得下去呢，于是我在公司自主发起了几个小型练手项目。分别是：AIS数据采集分析，产出了一个实时更新的数据面板；基于Cesium的片区模型空间分析前端页面；基于Sketchup和3DMax的数据融合技术预研。因为基本上只有一个人在做这方面的技术研究和产出，所以个人对这个成果并没有很满意。我更希望的是，我开个头，然后团队里的小伙伴可以将其做到80分以上。</p>
+<p>向内探寻指引自身行动的信条，大概有这么三条：</p>
+<p>第一条来自维特根斯坦：凡可说的，皆可说清，不可说的，只可不说。英文原文是：what can be said at all can be said clearly, and what we cannot talk about, we must consign to silence。这跟一个人的语言使用习惯密切相关，阳志平老师也有类似一金句：语言不是思想的外衣，而是思想本身。</p>
+<p>第二条来自物理学家费曼：凡我不能创造，皆不能理解。英文原文是：what I cannot create, I do not understand。换句话说，若你希望真正理解一个事物，你不但要将其原原本本地实现出来，还要能创新。什么是理解？理解不是背诵，不是复述，更不是口号，而是创造。</p>
+<p>第三条来自黑客与画家：可测量与可放大。这意味着你对事物的评判总是具备可操作性，你的工作成果总是可以复用，或是边际成本递减的。 在这样的理性驱动之下，技术人生才有了可被追求之物。正如语言即工具，技术亦是工具。工具不仅是思想的外在，更是思想本身。人类之所以优于地球上其他物种，正是因为其懂得如何创造工具。</p>
+<p>但这样的信条不容易让人感同身受，特别是在公司环境下，你的影响力相对于在外部学习社群，九牛一毛。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 导入数据源文件</span>
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;/Users/januswing/data/report-10-01-2023.csv&#39;</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># 删除自带统计数据行（To列为空）</span>
+<span class="n">stats_line</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">stats_line</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 维度归一化，提取日期，时间单位统一为小时</span>
+<span class="n">source</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Pstudy&#39;</span><span class="p">,[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">&#39;Study&#39;</span>
+<span class="n">source</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Pwork&#39;</span><span class="p">,[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">&#39;Work&#39;</span>
+<span class="n">source</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Pwrite&#39;</span><span class="p">,[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">&#39;Writing&#39;</span>
+<span class="n">source</span><span class="p">[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s1">&#39;Duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">3600</span><span class="p">)</span>
+<span class="n">source</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]))</span>
+<span class="n">source</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]))</span>
+<span class="n">source</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Activity type</th>
+      <th>Duration</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Comment</th>
+      <th>Tags</th>
+      <th>Duration_Min</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Writing</td>
+      <td>00:36:00</td>
+      <td>2022-12-31 16:53:13</td>
+      <td>2022-12-31 17:29:13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.600000</td>
+      <td>2022</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Study</td>
+      <td>00:13:05</td>
+      <td>2022-12-31 16:28:34</td>
+      <td>2022-12-31 16:41:39</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.218056</td>
+      <td>2022</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>plan</td>
+      <td>00:40:55</td>
+      <td>2022-12-31 15:37:34</td>
+      <td>2022-12-31 16:18:29</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.681944</td>
+      <td>2022</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>plan</td>
+      <td>00:35:44</td>
+      <td>2022-12-31 14:50:50</td>
+      <td>2022-12-31 15:26:34</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.595556</td>
+      <td>2022</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>life</td>
+      <td>00:00:12</td>
+      <td>2022-12-31 10:34:28</td>
+      <td>2022-12-31 10:34:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.003333</td>
+      <td>2022</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2936</th>
+      <td>Read</td>
+      <td>00:20:49</td>
+      <td>2022-07-01 07:53:21</td>
+      <td>2022-07-01 08:14:10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.346944</td>
+      <td>2022</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2937</th>
+      <td>life</td>
+      <td>00:40:18</td>
+      <td>2022-07-01 07:13:03</td>
+      <td>2022-07-01 07:53:21</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.671667</td>
+      <td>2022</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2938</th>
+      <td>Study</td>
+      <td>00:36:03</td>
+      <td>2022-07-01 06:37:00</td>
+      <td>2022-07-01 07:13:03</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.600833</td>
+      <td>2022</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2939</th>
+      <td>social</td>
+      <td>00:00:07</td>
+      <td>2022-07-01 06:36:53</td>
+      <td>2022-07-01 06:37:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.001944</td>
+      <td>2022</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2940</th>
+      <td>fun</td>
+      <td>00:48:53</td>
+      <td>2022-06-30 23:16:13</td>
+      <td>2022-07-01 00:05:06</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.814722</td>
+      <td>2022</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>2941 rows × 10 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分类统计情况</span>
+<span class="n">all_type_sum</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Activity type&#39;</span><span class="p">])[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">all_type_sum</span> <span class="o">=</span> <span class="n">all_type_sum</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Duration_Min&quot;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_type_sum</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">all_type_sum</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">all_type_sum</span><span class="p">[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span><span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Activity type  Duration_Min
+3           Work   1049.875833
+7           life    433.391667
+2          Study    147.032778
+5         family    114.260833
+1           Read     71.852778
+6            fun     42.180833
+4        Writing     33.826389
+0         Coding     20.557778
+8           plan     19.500000
+10        sports     17.106111
+9         social     11.556667
+</pre></div>
+</div>
+<img alt="_images/9ea4f468067d6cb46845966dd2f23173a3b6db513b7cd084537b2d6480d955e9.png" src="_images/9ea4f468067d6cb46845966dd2f23173a3b6db513b7cd084537b2d6480d955e9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 大类分月统计</span>
+<span class="n">work_monthly_sum</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;Work&#39;</span><span class="p">]</span>
+<span class="n">work_monthly_sum</span> <span class="o">=</span> <span class="n">work_monthly_sum</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">work_monthly_sum</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">work_monthly_sum</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]),</span><span class="n">work_monthly_sum</span><span class="p">[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   month  Duration_Min
+0      7    169.909722
+1      8    205.263333
+2      9    191.866111
+3     10    174.454722
+4     11    167.980278
+5     12    140.401667
+</pre></div>
+</div>
+<img alt="_images/4c0fa9f22617e03ae8a3d3ab60725fcf196c709b9de4215f9749d93bd74d65ec.png" src="_images/4c0fa9f22617e03ae8a3d3ab60725fcf196c709b9de4215f9749d93bd74d65ec.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 平均每天工作时间</span>
+<span class="n">daily_work_sum</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s1">&#39;Activity type&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;Work&#39;</span><span class="p">]</span>
+<span class="n">daily_work_sum</span> <span class="o">=</span> <span class="n">daily_work_sum</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">])[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;平均每天工作时间：</span><span class="si">{}</span><span class="s1">小时&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">daily_work_sum</span><span class="p">[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;每天工作时间中位数：</span><span class="si">{}</span><span class="s1">小时&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">daily_work_sum</span><span class="p">[</span><span class="s1">&#39;Duration_Min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>平均每天工作时间：6.175740196078431小时
+每天工作时间中位数：7.082777777777778小时
+</pre></div>
+</div>
+</div>
+</div>
+<p>相对于上半年每天工作6.23小时，下降到6.18小时，变化不大，但能感觉到下半年的技术成长力度是有所减弱。</p>
+<p>2023年，我的人生发展重点是什么？权重发布如何？又何以在不断变化的工作和生活中，保持那份有力量的输出？这些是我在第一季度需要解决的问题。</p>
+<p>为启用“承诺一致性”的BUFF，我也在此写下第一季度的三个重点目标以及初步分解：</p>
+<ol class="arabic simple">
+<li><p>信息检索与分析系统培训
+以此机会完善</p></li>
+</ol>
+<ul class="simple">
+<li><p>信息检索与分析工具集：完善现有工具组合使用，完善各种场景工作流自动化</p></li>
+<li><p>可审计文档撰写系统雏形</p></li>
+<li><p>企业级情报分析系统构建</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>孩子写作训练的体系化思考</p></li>
+</ol>
+<ul class="simple">
+<li><p>菲菲写作课学习并输出笔记</p></li>
+<li><p>家庭日常读书计划制定</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>三维技能入门</p></li>
+</ol>
+<ul class="simple">
+<li><p>WebGL理论知识学习</p></li>
+<li><p>Three.js学习</p></li>
+<li><p>学习并熟练一个三维工具，选一（Unity，3DMax，Blender）</p></li>
+</ul>
+<p>此外几个积累下来的、很想完成的事儿，期望也在第一季度完成：</p>
+<ul class="simple">
+<li><p>数据库论文研读一篇（碎石者大佬那篇）</p></li>
+<li><p>决策分析课程学习并完成所有作业</p></li>
+<li><p>知识星球日常运营</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "py37"
+        },
+        kernelOptions: {
+            name: "py37",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'py37'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="stats_time_log_2022HalfYear.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2022年半年总结</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bing_files_automate.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">批量下载文件并存入Zotero（cn.bing.com）</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">两瓣苦瓜</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By W先森
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

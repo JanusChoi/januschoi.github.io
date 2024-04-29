@@ -1,0 +1,22 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: 数据思维十讲
+    chapters:
+    - file: data_mind_toc
+    - file: data_mind_00
+  - caption: 安身立命
+    chapters:
+    - file: stats_time_log_2022HalfYear
+    - file: 2022FullYear
+  - caption: 唯手熟尔
+    chapters:
+    - file: bing_files_automate
+    - file: apache_top_levels
+    - file: wanfang_pdf_rename
+    - file: anythingToPDF
+    - file: word2pdf
+    - file: embeding_test
