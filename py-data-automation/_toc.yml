@@ -6,16 +6,8 @@ root: intro
 parts:
   - caption: 数据思维十讲
     chapters:
-    - file: data_mind_01
-    - file: data_mind_02
-    - file: data_mind_03
-    - file: data_mind_04
-    - file: data_mind_05
-    - file: data_mind_06
-    - file: data_mind_07
-    - file: data_mind_08
-    - file: data_mind_09
-    - file: data_mind_10
+    - file: data_mind_toc
+    - file: data_mind_00
   - caption: 安身立命
     chapters:
     - file: stats_time_log_2022HalfYear
