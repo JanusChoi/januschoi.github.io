@@ -8,6 +8,9 @@ parts:
     chapters:
     - file: data_mind_toc
     - file: data_mind_00
+  - caption: 科幻之路
+    chapters:
+    - file: asimov
   - caption: 安身立命
     chapters:
     - file: stats_time_log_2022HalfYear
@@ -20,3 +23,4 @@ parts:
     - file: anythingToPDF
     - file: word2pdf
     - file: embeding_test
+    - file: playwright_learning
