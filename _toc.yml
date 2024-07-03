@@ -17,6 +17,8 @@ parts:
     - file: 2022FullYear
   - caption: 唯手熟尔
     chapters:
+    - file: quantum-computers.md
+    - file: quantum-computers-trans.md
     - file: bing_files_automate
     - file: apache_top_levels
     - file: wanfang_pdf_rename
