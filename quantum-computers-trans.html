@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>为什么你不需要了解量子计算机-译文 &#8212; 歪思大数据</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quantum-computers-trans';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="批量下载文件并存入Zotero（cn.bing.com）" href="bing_files_automate.html" />
+    <link rel="prev" title="为什么你不需要了解量子计算机" href="quantum-computers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    个人数据–你的工作加速器
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据思维十讲</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mind_toc.html">【专栏】数据思维目录大纲</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mind_00.html">【专栏】数据思维00：数据迷阵 Data Matrix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">科幻之路</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="asimov.html">天才的日常：阿西莫夫的写作传奇</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">安身立命</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stats_time_log_2022HalfYear.html">2022年半年总结</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2022FullYear.html">2022年总结：迷途知返</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">唯手熟尔</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantum-computers.html">为什么你不需要了解量子计算机</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">为什么你不需要了解量子计算机-译文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bing_files_automate.html">批量下载文件并存入Zotero（cn.bing.com）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_top_levels.html">Apache顶级项目信息提取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wanfang_pdf_rename.html">万方下载论文重命名</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anythingToPDF.html">链接生成PDF并保存Zotero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word2pdf.html">Word文档资料整理工作流</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embeding_test.html">让GPT帮你读文档：一种简单的实现方法</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2Fquantum-computers-trans.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/quantum-computers-trans.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>为什么你不需要了解量子计算机-译文</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foreword">前言 Foreword</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-age">量子时代 The Quantum Age</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">算法与程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">量子询问（？）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">瑞士军刀电脑</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qpu">QPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">模拟一切</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">收获</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子计算从何而来？</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子计算中的“量子”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">量子计算中的“计算”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">量子计算简史</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">谜题1：无人理解量子这玩意</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">你已经在使用量子技术了</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">晶体管</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">激光</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">原子钟</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mri">磁共振成像（MRI）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">还有更多应用……</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">量子目的论</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">谜题2：量子比特同时是0和1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">如果1等于0，那么我便是教皇。</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">急速升级</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">给所有事物都冠以“量子”之名</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">用量子比特写作</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">叠加态</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">量子信息的读取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">量子测量</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">一场机遇与挑战的游戏</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">为什么要关心抛硬币呢？</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>为什么你不需要了解量子计算机-译文<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<div class="section" id="foreword">
+<h2>前言 Foreword<a class="headerlink" href="#foreword" title="Permalink to this heading">#</a></h2>
+<p>在过去的二十年里，我的博客“Shtetl-Optimized”(<a class="reference external" href="https://scottaaronson.blog/">Shtetl-Optimized (scottaaronson.blog)</a>)一直是互联网上关于戳穿关于量子计算机如何工作以及它们将帮助解决哪些问题的夸大说法的中心信息站。这就是我的风格。我从未计划过这样，但是随着越来越多的炒作充斥着科技媒体，我感到不得不如此。</p>
+<p>然而，在所有这些时间里，我从未想过要写（更不用说我真的写了）一本名为《What You Shouldn’t Know About Quantum Computers》的简洁书籍。我的同事Chris Ferrie做到了。他是那个合著了意外畅销书《Quantum Computing for Babies》的家伙。现在他回来了，为那些年纪稍微大点的人准备了这一本读物。</p>
+<p>在这本简短的书中，Chris在每一页上都提供了大量的真相。他解释说，至少在数学层面上，量子力学不是一个无尽的谜团：它只是一个特定的、固定的东西，和你习惯的不一样，直到你习惯了它。它不是无拘无束的，而且过于简单化地说它涉及“一切同时发生”是远远不够的。关键点是任何孤立物理系统（比如一个电子或一个分子，甚至原则上整个宇宙）的状态实际上是一个庞大的数字列表——复数，称为幅度（amplitude）。有一个幅度对应于你查看系统时可能发现它在做的每一件事。<code class="docutils literal notranslate"><span class="pre">对于系统在任何可能状态下的行为，都存在一个幅度。这意味着，无论你观察到什么，系统中的动作总是具有某种强度或程度。例如，当你观察到一张</span> <span class="pre">JPEG</span> <span class="pre">图像时，它的亮暗程度就是该图像在整个色彩空间内所占据的位置和强度。同样地，当你听到一首</span> <span class="pre">FLAC</span> <span class="pre">音乐时，它的音量也是该音乐在整个声音范围内所占据的位置和强度。这些幅度反映了系统（即图像或音频）中信息流动方式以及其相关属性（如色彩深浅、声音高低等）。因此，通过分析这些幅值来理解系统行为非常重要。(译注)</span></code> 这些幅度与发现系统做各种事情的概率密切相关，但它们不是概率。（首先，它们可以是负数。）</p>
+<p>一旦他解释了这一点，Chris就能迅速解决关于量子计算的一个又一个陈词滥调。例如，量子计算机是否通过并行尝试所有可能的答案来工作？很遗憾，这似乎有点过于理想化：量子计算机通过编排一种干涉模式来工作，其中对每个错误答案幅度的贡献相互抵消，而对正确答案幅度的贡献则相互加强。结果发现，只有对于特殊问题，我们才知道如何编排这样的干涉模式，以提供比已知最佳算法更快的速度。这也就是为什么我们不指望量子计算机能够取代经典计算机，而是“仅仅”是为了补充它们，加速特定任务，如量子模拟和密码破解。</p>
+<p>同样，量子计算机能否使用纠缠来以超过光速的速度发送信息，正如爱因斯坦所说的“鬼魅般的超距作用”？不，这是另一个误解。真实的情况是“仅仅”经典模拟量子力学将需要超光速通信。量子力学再次确定了一个微妙的中间立场，介于“熟悉的经典世界”和“任何事物都可能的幻想世界”之间：这是没有任何科幻作家能够想象出来的立场。然后是关于量子计算机不可能存在的传言，因为某种简单的理由，让全世界的物理学家都忽视了。这看起来像是“量子计算机可以做任何事情”传言的相对说法，我将它们看作是一体两面：你对量子计算机的限制了解得越多，就越是觉得它们的存在不那么令人震惊。或者量子计算机可能无法存在，只因无法达到理论家们设想的规模和可靠性。但如果是这样，那么这本身就是物理学中一次革命性的发现，比仅仅是在构建量子计算机方面的“成功”要令人惊讶得多！就目前正在进行的实验努力看来，我们终将找到答案。</p>
+<p>无论如何，Chris以一种易懂和有趣的方式解释了这一切——甚至对那些看不懂我博客的人来说也一样。</p>
+<p>我对这本书有一些吹毛求疵，但这只是我对同事独有的，而不是对流行的量子计算扯淡而言的。Chris似乎对量子算法在金融领域持乐观态度；我则不太乐观。Chris讨厌量子力学的多世界解释，而我（正如他在书中所说）对多世界的态度几乎是积极的，但并不真正相信它。（另一方面，Chris和我站在一起反对受 MWI 启发的关于量子计算的误解，比如“量子计算只是并行尝试所有答案”或“一千个量子位等同于 2^1000 个经典位”）</p>
+<p>反思一下，我很高兴我能在这本书中找到一些问题。否则我会为自己没有写这本书而感到遗憾！当然，这就是我能给出的最高赞美。</p>
+<p>斯科特·亚伦森（Scott Aaronson）
+德克萨斯州奥斯汀，2024 年</p>
+</div>
+<div class="section" id="the-quantum-age">
+<h2>量子时代 The Quantum Age<a class="headerlink" href="#the-quantum-age" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>19世纪是机器时代，20世纪作为信息时代也将载入史册，21世纪将是量子时代。
+——保罗·戴维斯（Paul Davies）</p>
+</div></blockquote>
+<p>计算机无处不在——估计你也正在用电脑在阅读此书！但计算机能做什么？让我们退后一步，问问我们想让计算机做什么。</p>
+<div class="section" id="id2">
+<h3>算法与程序<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>想象你的数字计算机可以计算的东西，一房间拿着纸和笔的人也能算得出来。还记得长除法吗？房间里的人们正在计算长除法——包括一系列记忆步骤以及应用于此的数据片段。老师教过的计算步骤便是算法。这些步骤是人为抽象出来的，无论是用纸笔，还是算法，或是可在其上运行Windows 操作系统的电子电路板。因此，有了一组特定工具，这些基于工具的步骤便是程序。（现在你的电脑上就肯定有那么几个程序正在运行着，而且只能在你这台电脑上运行。）</p>
+<p>无论使用什么工具，只要忠实地遵循算法，总会得到一样的答案。拿着纸和笔的人却会算错而且速度慢。电子电路接近完美且极其快。选择是显而易见的。换句话说，又那么多我们想要或者需要的算法要去实现，那么如果我们可以设计一个设备去迅速而准确地完成这项工作，岂不是很棒？是的，当然如此。</p>
+<p>有趣的是，每个算法都可看作一种将1和0组成的序列逐步修改、调整、优化等过程中产生新序列或结果集合的程序。如果我们能够构建一个机器，该机器可以表示任何1和0序列，并接受更改一个序列转化为另一个序列（程序）的指令（命令），那么我们就可以使用它来执行任何算法中的步骤。其实这便是现代数字计算机——一台可以为我们做任何计算的机器。</p>
+<p>虽然数字计算机可以执行任何算法，但有些算法需要运行步骤太多。虽然按原理来说能算出方程的解，但在某些实际操作中却不可行。我们大致知道为了解一个药物分子与生物分子之间（假设存在）的关系需要对一系列方程求解，而且也有对应的算法。许多超级计算机正在高速运转，用低效率的程序在运算，但这样还是太难了——所以我们通过基因工程小鼠来“解决”这个问题。<code class="docutils literal notranslate"><span class="pre">基因工程小鼠是指通过遗传工程技术对实验小鼠基因组进行有目的地改造或修饰，使实验小鼠具有特定的生物表型或特性，以便科研人员用来研究基因的功能、调控机理以及相互作用等基因的体内秘密，或用于筛选疾病预防治疗用的药物。(译注)</span></code></p>
+</div>
+<div class="section" id="id3">
+<h3>量子询问（？）<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>我们想象一个场景：有没有办法构建一台专门用于解方程的机器呢？这当然好！但准确来说，这台机器应该做什么呢？科学家们找到了一种使用复数（例如负一平方根和π）代替1和0进行计算的算法。虽然并非无所不能，但这些算法比原来版本少了许多步骤。</p>
+<p>实际上，这些算法并不是什么特别出众的东西——孩子们也能够学会按照类似长除法的步骤进行操作。但这样做低效得令人发指。因此，我们需要更加具体和准确地定义问题即：能否创造一台机器，该机器能够表示各种复数序列并且可编写从一个序列到另一个序列之间转换的程序？答案是肯定的！这太机器的名字就叫量子计算机（quantum computer）。<code class="docutils literal notranslate"><span class="pre">“复数”指代包含虚部和实部两个部分构成的数字；“量子计算机”则是利用量子位</span> <span class="pre">quantum</span> <span class="pre">bits</span> <span class="pre">(qubits)</span> <span class="pre">来处理信息、运算等高级任务所使用到的硬件设备或软件系统。由于</span> <span class="pre">qubit</span> <span class="pre">本身存在着超位态混合状态之间切换性质，因此它比传统二进制位更加灵活、强大和高效。（译注）</span></code></p>
+<p>如今，许多算法被描述成改变复数序列的过程，而不是二进制数据。这些所谓的量子算法可以通过人力实施或利用桌面电脑来实施，但需要消耗大量时间。相比之下，量子计算机是一台专门用于高效地直接运行这些过程的特殊设备。</p>
+<p>能用于表征1或0的方法有很多，而计算机技术最终选择了晶体管作为代表元器件（目前你的电脑中有几亿个）；但是如何“自然”地表征复数呢？原来还真存在一个理论回答了这个问题！量子物理说明复数由光和物质的微小细节所编码！其实一直在我们身边，只不過我们的手臂太笨重而無法接触罢了。科学家与工程师已经通过过去100年的努力，让人类有了足够精细的控制力。现在我们可以构建设备来编码复数并更改他们的数值。</p>
+<p>当我在写这本书时，所有现存量子计算机都只是原型——小且不可靠，还不能用于实际生产。它们也还没有像数字计算机那样抽象化的量子程序。我正在用的文本处理程序或者你在某网站下载的软件都还没有对应的某个“量子”版本。最令人兴奋的是，想象这些量子程序会长什么样子——毕竟，当数字算法刚被发明并用于构建计算机时，谁也想象不到未来在这些机器上可以撰写博客、分享视频、进行银行交易等一切现在我们习以为常的事情。我们知道未来量子计算机将能解决一些重要问题，但最终会用于做什么现在是想象不到的，因为人类预见力本来就差。</p>
+</div>
+<div class="section" id="id4">
+<h3>瑞士军刀电脑<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>即便我已经试过瑞士军刀里的每个工具，我依然不打算买一个——太笨重，而且我近期也没打算要去树林。瑞士军刀之所以被发明仿佛在表明一个道理：特定任务最好用特定工具完成。如果你需要每天开一百瓶葡萄酒，举个例子，当然可以使用瑞士军刀上的钻头，但你还是会想买一个专门开红酒的机器。</p>
+<p>计算机不过是一个计算界的瑞士军刀。可以用来解各种数学问题。特别是当许多日常问题都可以表述为数学问题。显然如去饭店要留多少小费，什么时候搭上公交可以赶上某次会议，在电子表格中做数值汇总等等。没那么显然的通常是某种隐藏的数字问题，比如在数字照片中识别人脸，格式化文档里的文字，还有让两个天各一方的人可以进行实时面对面的沟通等等。</p>
+<p>你所使用的平板电脑、智能手机或笔记本电脑里面，有一个叫做中央处理单元（CPU）的设备，它负责执行任何被抛向它的指令。但正因为它可以做任何事，而未必是做某件特定事的最佳工具。这也是PUs进场的地方，而其中最有名的就是GPU，及图像处理单元。</p>
+<p>或许图像也不是你考虑得最多的。但即使只是显示屏幕上的文字这么简单的事，也需要协调数百万个亮度和颜色像素。这对于CPU来说可不简单。因此，GPU被设计成专门用途的电子设备，仅负责执行显示图像的计算。CPU把这些困难的计算都外包给了GPU，因此游戏玩家才得以玩得尽兴。</p>
+</div>
+<div class="section" id="qpu">
+<h3>QPU<a class="headerlink" href="#qpu" title="Permalink to this heading">#</a></h3>
+<p>复数的加法和乘法计算对CPU来说非常耗时。正如你现在所知，这类计算对于量子物理问题至关重要，包括模拟化学反应和其他微观现象。如果可用一个量子处理器（QPU）将会方便很多。虽然它们被混淆地称作“量子计算机”，但实际上它们只是由 CPU 发送特定运算的芯片。我认为最终会被直接称作量子处理器（QPUs）。</p>
+<p>目前你还不能在计算机里面找到QPU。全世界的公司和科研工作者正在研究这项技术。如今的原型还需要许多辅助技术，比如利用液态玄武进行冷却的冷藏机。因此，尽管 QPUs 被称为“小”，但你会看到它们周围配套了巨大的实验室设备。</p>
+<p>未来QPU会做什么？首先，十年前我们想象不到今天人们用那能放入口袋里的超级计算机来做什么。（主要是为了给自己拍照再加上各种滤镜效果呀！）所以，我们大概也无法预测十年后人们会用QPU来做什么。然而，对于工业和科学领域能找到些许线索。</p>
+<p>目前量子算法动物园网站（<a class="reference external" href="http://quantumalgorithmzoo.org">quantumalgorithmzoo.org</a>）列出了65个问题（还在增加）能够通过量子处理单元（QPU）更高效（对比CPU）解决而非常抽象化的问题。尽管这些问题很抽象，但任何处理器都在做着同样的精密计算。转换真实世界中遇到的难題至少需要翻译成我们知道可以利用 QPU 来解决它们的数学問題；之前并未投入大力度做到这一点主要原因是 QPU 尚未存在许久, 因此没有激励;随着 QPUs逐渐上线,新应用程序将会崭露头角.</p>
+<p>目前QuantumAlgorithmZoo网站上列出了65个(正在增加)能够通过量子处理单元（QPU）更高效解决而非常抽象化的问题。尽管这些问题很抽象，但所有处理器都需要进行其精密计算。关键在于要QPU用于将真实世界问题转换为数据问题。之前并未投入大力度做到这一点主要是因为QPU尚未存在，因此难以推动。然而，随着越来越多QPUs逐渐上线，新应用将会崭露头角。</p>
+</div>
+<div class="section" id="id5">
+<h3>模拟一切<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>我偏向认为量子处理器（QPU）必然会用于物理模拟——这是广泛存在的。如果你是游戏玩家就会明白，即便身处游戏中，你依然会想象那是一个虚拟的真实世界。那里有各种物理法则，需要计算各种对象和角色的运动——即模拟。在设计飞机、桥梁等工程系统时都需要进行物理模拟。科学领域也要模拟——为了更好的理解，甚至可以模拟出整个星系。但是量子物理一直难以被模拟因为CPUs的表现实在太糟糕了。</p>
+<p>一旦我们能够利用量子处理器（QPU）模拟量子物理现象，就可以模拟化学反应过程，从而高效设计新型材料和药物。我们甚至有望模拟宇宙大爆炸之初或黑洞内部的极端物理环境，谁知道我们会有什么惊人发现呢？</p>
+</div>
+<div class="section" id="id6">
+<h3>收获<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>如果你只是想要一个对量子计算机的“五分钟总结”，那么从别处听到的诸如“量子比特”、“超位态”、“纠结性”、“并行性”等词汇对你而言没太大帮助。关于量子处理器（QPU）你需要了解的与GPU没什么不同——他们都是擅长对某一类数据问题进行计算的特定计算单元罢了。</p>
+<p>如果某天你拥有带有「量子」一词的工作岗位，那很可能做软件（就像今天每20名软件工程师对应1名计算机硬件工程师一样）。量子解决方案工程师所面临的最大的挑战在于，如何将业务问题转换为可以外包给QPU解决的问题。他们可能不理解甚至不需要知道有关「超位」和「纠缠」等概念！如果你不希望了解细节，你就有权这么做。</p>
+<p>目前最大的问题是，这些细节不是被忽略，而是被描述成某种粗糙的比喻和神秘主义。量子时代即将到来，但我们现在却处于黑暗时代，神话和异端邪说盛行猖獗。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>量子计算从何而来？<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>历史不是过去本身而是过去的一张地图，从特定视角绘制，为现代旅行者所用
+——亨利 格拉西</p>
+</div></blockquote>
+<p>几乎任何关于量子计算的讨论——无论是在研究文章、科普杂志还是商业期刊中——都会涉及与所谓的“经典”计算的比较。谈论量子计算几乎不可能不使用这个短语，因此我们最好从这里开始。</p>
+<p>在经典计算中，“经典”一词是从物理学的传统用法中借用的。在物理学中，我们通常将1900年之前的物理学称为“经典”，而将1900年之后的物理学称为“现代”。现代物理学包括广义相对论和量子物理学。广义相对论是爱因斯坦关于弯曲空间和时间的理论，它解释了重力的作用。尽管这一理论在帮助我们理解令人敬畏的星系图像方面发挥了重要作用，但它在技术上最直接的应用是在全球定位系统（GPS）中，这对于卫星导航至关重要。然而，即使这一惊人的应用也不是孤立的——它还需要量子技术以实现精确运行。</p>
+<p>量子计算理论可能对极端重力的地方，如黑洞，有所阐述，但我们将保持在地球上，不会在这本书中更多地谈论广义相对论。与广义相对论不同，量子物理学有更广泛的应用范围，涵盖了多个领域。它是激光和灯泡的支柱，是医疗扫描仪和放射治疗的命脉，是半导体和电子显微镜的基石。它决定了原子钟的精确度和原子弹的威力，以及其他许多方面。它也是量子计算机的燃料。</p>
+<p>量子物理学的强大力量及其技术含义源于探索一个新世界——原子的微观世界。通过统一自然界的四种基本力中的三种，量子物理学向我们展示了支配物质和能量基本组成部分的规则。第四种力，重力，虽然无疑重要，但相对较弱——当我们每次站起来时轻松克服地球的重力时就可以看出。从经典物理学到量子物理学的范式转变，推动人类从蒸汽机和机械时代进入了数字、信息驱动的时代。现在，它正推动我们进入量子时代。</p>
+<p>在本章的剩余部分，我想为您提供一些关于量子计算是如何以及为何出现的背景信息。直到最近，量子和计算主要是两个独立的研究领域，尽管它们在工程应用上有显著的重叠。因此，我们将首先分别介绍“量子”和“计算”部分，然后再将它们结合起来。</p>
+<div class="section" id="id8">
+<h3>量子计算中的“量子”<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>量子物理的故事始于1900年，以马克斯·普朗克的“量子假说”为起点。普朗克提出了能量是量子化的这一概念，即能量以离散的包形式存在，这些包后来被称为量子。普朗克研究的问题被命名为黑体辐射问题。黑体是对一种理想化物体的描述，这种物体能够完全吸收并发射辐射。对于处于热平衡状态的热物体，如太阳或炽热的铁锅，这是一个相当好的近似，它们在相同温度下发出大致相同的谱（颜色）。换句话说，如果你加热某物至发出“白热”，其温度将与太阳相近，大约6000℃。问题是，当时（现在称为“经典”物理学）的物理学无法解释这一点。</p>
+<p>在普朗克进行计算时，他发现如果能量有最小的单位，公式就能完美地工作。这是他在绝望中做出的一个大胆猜测，并非基于直觉或推理。但这从根本上偏离了经典物理学，似乎会让几个世纪的发展变得无用，因此普朗克本人最初也没有认真对待它。直到许多年后其他人才渐渐关注并完全认识到其重要性。也许并不奇怪，早期就认识到其重要性的人之一是阿尔伯特·爱因斯坦。</p>
+<p>在爱因斯坦对科学的一系列杰出贡献中，他利用普朗克的量子假说解决了光电效应的问题。光电效应是一种现象，当材料暴露于特定频率的光时，会发射出电子。经典物理学无法解释为什么这些发射出的电子能量取决于光的频率（颜色）而不是其强度（亮度），或者为什么存在一个截止频率，低于该频率无论光的强度再大也不会发射电子。</p>
+<p>爱因斯坦提出，光本身以量子化的形式存在，形成能量的包，这些包后来被称为光子。每个光子的能量与其频率成正比，这与普朗克的量子假说一致。当一个光子撞击电子时，若其能量（由频率决定）足够，它能克服电子与材料间的束缚能量，从而使电子被发射。量子化已经确立。这标志着物理学的一个深刻转变，至今仍是困惑和争论的来源。在光子之前，光被认为是波或粒子。现在，它似乎两者都是——或者两者都不是。这被称为波粒二象性。</p>
+<p>直到这一点，量子理论似乎只适用于光。然而，与这些发展并行的是，实验开始越来越详细地探测原子的内部结构。一个令人好奇的现象是光谱线。当观察最纯净的元素（氢、氦、锂等）发射或吸收的光时，会出现特定的线或间隙。存在许多公式，但直到1911年尼尔斯·玻尔访问英国并与当时的领先原子物理学家讨论此事之前，没有一个能从经典物理学或任何机制中推导出来。</p>
+<p>玻尔的模型提出，原子中的电子只能占据某些离散的能量水平，这与普朗克的量子假说一致。当电子从较高的能量水平跃迁到较低的水平时，它会发射出频率对应于两个水平之间能量差的十年后，路易·德布罗意在其博士论文中提出，不仅光，所有粒子，包括电子，均具有粒子和波的双重特性。这是一个革命性的观点，很快便通过实验得到了验证。至此，量子理论显然不仅仅是一种在经典物理学无法解释数据时可用的修正技术。科学家们开始抽象地运用量子物理概念进行理论化，而非仅将其作为最后的手段。</p>
+<p>1925年，沃纳·海森堡发明了矩阵力学，用于处理支撑该理论的计算。他利用矩阵力学证明，无法同时精确测量粒子的位置和动量。这一不确定性原理成为量子理论中既基本又臭名昭著的方面。与此同时，埃尔温·薛定谔开发了一个数学方程，描述德布罗意波如何随时间变化，方程中的变量——波函数——描述了在特定位置或状态下找到粒子的概率。</p>
+<p>与矩阵力学相对，薛定谔的理论被称为波动力学。关于这两种理论哪个正确的争论曾短暂存在。然而，保罗·狄拉克通过公理化理论证明了两者等价，展示了简单的原则可以推导出所有已知内容。他还结合了量子力学与狭义相对论，导致了反物质的发现，并为量子场论的进一步发展铺平了道路，最终形成了支持高能粒子加速器实验中不断涌现的粒子发现的标准模型。</p>
+<p>然而，到了20世纪中叶，量子物理学基本上已成为一门成熟的科学。理论的应用远远超过了发现，大多数使用它的人更像是工程师而非物理学家。我们将简要介绍这些应用，但首先，我们需要跳跃时间线，再回溯历史。在20世纪60年代和70年代，贝尔和IBM等信息技术公司的实验室工程师开始担心新通信和计算设备建设的局限性。这些设备需要能量才能运行，而能量是物理学的主要关注点。物理定律对此有何说法？如果是这样，最基本的定律（量子定律）是否最有发言权？确实如此，这正是物理学和计算理论两个领域交汇的地方。但要理解这一点，我们必须讲述量子计算背后故事的另一半。</p>
+</div>
+<div class="section" id="id9">
+<h3>量子计算中的“计算”<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>在量子物理学中，常常需要将某些理论或实验的结果与经典物理学的预测结果进行比较。因此，量子与经典对比的传统历史悠久。这一传统首先由80年代开始研究量子计算的量子物理学家采纳。与物理学不同，经典计算中的形容词“经典”并不意味着它是过时的——它仅仅是一种区分量子计算与经典计算的方式。换句话说，无论量子计算将要与什么进行比较，它都注定会被称作“经典”。
+我用来创作的这个设备，在通常意义上绝非传统。现代笔记本电脑是工程学的奇迹，没有量子工程，数字计算无从谈起。你计算设备内部的组件，比如智能手机，由于尺寸极小，量子力学在它们的构思、工程设计及功能中扮演了重要角色。我的笔记本电脑之所以被称为“经典”，并非因为硬件，而是因为软件。设备在最抽象层面所做的——即计算——可以被视为经典计算。</p>
+<p>物理学中的术语。确实，智能手机能做的任何事，一个足够大的杠杆和滑轮系统也能实现。电脑能更快、更可靠地完成。另一方面，量子计算机将运作。</p>
+<p>在设备层面和抽象层面上都展现出不同的特性。抽象计算科学理论，现在被统称为理论计算科学。</p>
+<p>计算机科学诞生于20世纪30年代。英国二战时期的密码破译专家艾伦·图灵设计了一种理论上的计算机模型，现称为图灵机。这种简单而抽象的机器旨在概括计算的基本概念。他设想了一种机器，能在无限长的纸带上根据一组预定的规则进行读取、写入或移动。令人惊讶的是，凭借这个简单的模型，图灵证明了某些问题根本无法通过计算来解决。</p>
+<p>图灵与其博士导师阿隆佐·丘奇共同提出了丘奇-图灵论题，该论题主张所有可计算的事物均能通过图灵机进行计算。本质上，任何计算过程都可以被图灵的理论设备模拟。（想象一个现代设备在其内部模拟一个较旧的设备，例如视频游戏机，这样你就有了正确的理解。）一个更现代的版本，与物理学相关，声称所有物理过程都可以被图灵机模拟。</p>
+<p>1945年，约翰·冯·诺伊曼在图灵的工作基础上提出了今天大多数计算机遵循的架构。这种被称为冯·诺伊曼架构的结构将计算机分为中央处理单元（CPU）、内存、输入设备和输出设备。大约在同一时间，克劳德·香农正在思考信息的传输。在开创信息理论领域的工作中，香农引入了‘比特’（即二进制数字的缩写）作为信息的基本单位。比特是一个变量，可以取两个值之一，通常表示为0和1，我们将在本书中多次遇到这个概念。</p>
+<p>在香农的工作中，他将信息的概念与不确定性联系起来。当一条消息减少不确定性时，它就携带了信息。消息消除的不确定性越多，其所含信息量就越大。香农用数学方法阐述了这一概念，并开发了信息度量方法，意识到所有类型的数据——数字、字母、图像、声音——都可以用比特表示，为数字革命打开了大门。如今，比特的概念是所有数字计算的基础。例如，现代计算机以比特组的形式表示和处理信息。</p>
+<p>快进到70年代，计算机科学领域正处于蓬勃发展之中。研究人员提出了更为精细的计算概念，包括将‘可计算’的概念扩展至‘高效可计算’。效率有一个技术定义，大致意味着解决问题所需的时间不会随着问题规模的增加，而呈“爆炸性增长”。这里的关键词是指数。如果解决问题所需的时间呈指数级增长，如同投资利息或细菌繁殖，我们称之为效率低下。这样的问题虽然可计算，但在实践中解决起来非常不切实际。与物理学的联系通过最终被称为扩展的丘奇-图灵论题体现出来，该论题不仅指出图灵机可以模拟任何物理过程，而且可以高效地做到这一点。</p>
+<p>今天，所有计算机都具有大致相同的架构。一台计算机可以执行任何计算任务。当然，有些问题很难解决。但如果你能证明在一个计算机上解决某个问题很困难，那么你就知道没有必要尝试设计一种新型的计算机。为什么？因为第一台计算机可以高效地模拟新型计算机。</p>
+<p>看！这就是扩展的丘奇-图灵论题所说的，对于现代数字公民来说，这看似是常识。但这真的正确吗？或许未必。当我们考虑基于量子物理学模拟物理过程时，显然数字计算机无法高效地完成这项任务。量子计算因此应运而生。</p>
+</div>
+<div class="section" id="id10">
+<h3>量子计算简史<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p>量子计算的理念最早由保罗·贝尼奥夫于1980年提出。他和同行们因对计算物理限制的兴趣而受到驱动。事实上，计算的数学模型并未考虑量子物理定律。一旦理解了这一点，自然而然地，下一步就是考虑一个完全基于量子力学的图灵机模型。与此同时，理查德·费曼感慨在计算机上模拟量子物理的困难，并推测基于量子物理原理构建的计算机可能会表现得更好。同一时期，在俄罗斯，尤里·马宁也提出了量子计算机的可能性，同时指出它们可能访问指数级空间以及协调这些空间的难度。然而，这一想法在几年内仍显得有些模糊。</p>
+<p>1985年，大卫·多伊奇提出了通用量子计算机，这是一种能够模拟任何其他量子系统的量子计算模型。这种量子图灵机与图灵基于数字信息的原始计算理论模型相类似。这种量子计算机模型本质上与我们今天使用的模型无异。然而，在当时，是否存在优势尚不明确。最终，在1992年，多伊奇和理查德·乔萨提出了第一个提供可证明加速的量子算法——量子计算机可以在一次算法运行中解决传统计算机随着问题规模增大的次数才能解决的问题。这是一个普遍认为的人为问题，但它非常具有说明性，所谓的多伊奇-乔萨算法将在后面讨论。</p>
+<p>当时的一个担忧是量子计算机的鲁棒性如何。计算机对噪声非常敏感，算法中任何微小的误差都会破坏计算结果。当然，我们可以将问题重新定义为允许一定误差的近似问题。也就是说，问题定义允许存在少量误差。在这种情况下，Deutsch-Jozsa算法仍然能够解决问题，它完美地解决了问题，因此也近似地解决了问题。现在，一台数字计算机可以轻松解决这个问题。</p>
+<p>问题的近似版本。于是，“量子加速”消失了。1993年，Ethan Bernstein和Umesh Vazirani将问题修改为允许存在小错误的问题。他们还开发了一种量子算法，该算法可以在单一步骤中解决问题，而任何经典算法都需要多个步骤。1994年，Dan Simon遵循相同思路提出了另一个问题。然而，这次用于解决问题的量子算法实现了可证明的指数级加速。也就是说，随着问题输入规模的增大，最佳算法的表现。</p>
+<p>经典算法所需的步骤数量呈指数级增长，相比之下，量子算法最多只需要线性次数的步骤。西蒙算法是最著名算法的灵感来源，例如Shor算法。</p>
+<p>知名量子算法：Shor算法。1994年，Peter Shor提出了一种量子算法，可用于分解大数。</p>
+<p>数字的运算速度远超已知最佳经典算法，呈指数级增长。由于大多数公钥加密技术都基于因式分解的难度假设，Shor的算法引发了人们对量子计算的极大兴趣。竞赛随即展开。反对者立场坚定。最常见的批评是量子信息非常脆弱。有人（至今仍偶尔）认为，量子系统极易受到干扰。</p>
+<p>计算机必须与其环境完全隔离，使得在实际操作中变得几乎不可行。在经典情况下，错误纠正依赖于冗余——多次执行同一任务，如果其中一次出现错误，多数结果仍正确。然而，正如我们稍后将看到的，量子数据无法被复制，因此错误纠正看似不可能。</p>
+<p>彼得·肖尔展示了如何将量子数据编码到一个更大的系统中，即使该系统的一小部分出现错误，通过适当的解码仍能恢复量子数据。他提出了三量子比特码和五量子比特码，随后出现了保护量子数据免受错误影响的一系列编码。尽管这些编码前景广阔，但它们仍然是针对特定情况的简单示例。当时尚未明确是否能保护任何所需的计算。</p>
+<p>回想一下，比特与量子比特的一个关键区别在于后者形成一个连续集。例如，1与1.000000001代表不同的信息状态，等等。对于量子计算，我们是否需要连续的指令集呢？</p>
+<p>计算机是否能够处理量子数据的每一种可能变换？请记住，只需一条指令即可完成任何二进制位运算。这通常被称为NAND门（即“非与”门），当其两个输入位为1时，输出位为0，否则输出1。令人惊叹的是，你的计算机几乎能做的所有事情，都可以通过反复对长串的0和1应用这一条指令来实现。乍看之下，这对量子比特似乎是不可能的。罗伯特·索洛维和阿列克谢·基塔耶夫独立证明了这是可能的。</p>
+<p>所谓的索洛维-基塔耶夫定理表明，任何量子算法都可以通过一组有限的指令来实现。这不仅在理论上重要，在实践中也同样重要。现在，量子工程师只需关注如何使少数几种操作良好运行——其余的可以从这些操作中构建出来。尽管这听起来很有希望，但对于持怀疑态度的人来说，仍然存在一个漏洞。即使是数字电子设备，错误纠正也并非完美无缺。比如常见的蓝屏死机现象。虽然量子错误纠正表明，在执行这些指令过程中最常见的错误可以被纠正，但最终仍会有罕见的错误发生，这些错误可能会破坏计算。想象一下，如果你的屋顶漏水，有一个能接住99%水的桶。听起来不错，但最终，那1%未被桶接住的水会淹没房子。对于量子计算机错误，我们虽然有了“桶”（即错误纠正机制），但还没有“拖把”（即彻底解决问题的方法）。</p>
+<p>量子计算研究的理论巅峰是被称为‘容错阈值定理’。在90年代末期，几位研究人员发现，他们各自独立地，量子错误纠正使得量子计算能够持续进行，只要错误的发生率低于某个阈值。具体数值取决于计算模型的细节，但为了便于讨论，我们假设它是1%。这个数字意味着什么呢？如果你能精心设计基本组件，足够确保错误发生率低于1%，那么一个正确构建的量子码将使你的计算中错误发生率低于1%。</p>
+<p>换句话说，你纠正错误的速度可以快于它们产生，前提是这些错误的发生率低于阈值。就这样。在世纪之交前，所有要素均已准备就绪，我们只需等待有人将这东西建造出来！但如今，几十年过去了，我们仍未拥有量子计算机——这是怎么回事？量子技术是否仅是一场空想？建造它是否过于危险？它是否需要触及其他维度？以及，这东西究竟是如何工作的？是时候直面真正的问题了。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>谜题1：无人理解量子这玩意<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>“无人能理解量子物理。”
+——理查德·费曼</p>
+</div></blockquote>
+<p>多么经典的一句话！但公平地说，这样的名言实在太多了！</p>
+<blockquote>
+<div><p>“初次接触量子力学而不感到震惊的人，不可能真正理解其深意。”——尼尔斯·玻尔</p>
+</div></blockquote>
+<blockquote>
+<div><p>“量子力学完全令人费解。”——罗杰·彭罗斯</p>
+</div></blockquote>
+<blockquote>
+<div><p>“如果这是正确的，那物理学作为科学的历史或许就此终结。”——阿尔伯特·爱因斯坦</p>
+</div></blockquote>
+<blockquote>
+<div><p>“我不喜欢它，我为曾与之有所牵连感到遗憾。”——埃尔温·薛定谔</p>
+</div></blockquote>
+<p>挺有意思的。但不会有人真的根据那些已故大师们未解之谜来塑造自己的哲学观和技术预测吧？谁会这么做呢？所有人，都是这样！</p>
+<p>这个论点可能是这样的：尽管我们已知的原则足以开始构建量子计算机，但随着我们对知识边界的不断探索，我们可能会发现新的原理或限制因素，使量子计算变得不可行或不实用。然而，这种看法是完全错误的。我们对量子物理学的理解非常深入，以至于我们凭借这种理解构建了整个现代社会。</p>
+<div class="section" id="id12">
+<h3>你已经在使用量子技术了<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<p>不要以为关于量子技术的所有炒作只是会引发社会革命——因为它已经发生了！现代技术的每一部分都留有量子物理的痕迹。一旦这一点被理解，量子计算机似乎就不那么神奇了，它们的必然性也变得更加可接受。那么，就让我们来深入理解它吧！但首先，有件事至关重要，需牢记。</p>
+<p>尽管我们在微观尺度上的精密工程和控制是一个持续改进的过程，但第一代量子技术与第二代量子技术之间仍有明显区别，后者包括量子计算机，你将在本章中了解到。一旦我们理解了光和物质的精细结构，许多新的理解和工程路径便打开了。然而，这些并不需要操纵单个原子或光子来发现，也不需要接触基本组成部分来利用。现在，我们可以控制到单个原子的世界。这仍然是量子物理学，但它为我们提供了更多的可能性——其中大部分我们可能还不知道！</p>
+<p>考虑以下类比。当你烘焙蛋糕时，你从一系列单独的原料开始：面粉、糖、鸡蛋等。当我们获得提炼和完善这些原料质量的能力时，我们的烹饪成就从避免饥饿进化到了名人烘焙大赛。但是，我们仍然只能将这些原料混合在一起形成一般的面糊。这类似于量子物理学告诉我们物质的组成，但我们仅限于大量利用这些成分。现在，想象一下能够改变每一粒面粉或糖晶体，就像我们现在可以操纵单个原子一样。这将使戈登·拉姆齐能够以前所未有的程度定制现实电视蛋糕，对质地、味道和外观的要求超出了食物的认知。控制单个原子可能使我们能够从头开始设计世界，创造出超出我们想象且对经典世界经验训练的人来说难以辨认的事物。尽管这听起来像是被夸大的科学。</p>
+<p>在虚构作品中，我们操控世界最基本层面的能力，更应被看作是技术进步的必然演化。但它又是从何演化而来的呢？让我们来看几个例子。</p>
+</div>
+<div class="section" id="id13">
+<h3>晶体管<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<p>可以说，量子物理学最重要的技术成果之一就是晶体管。如果你现在正拿着手机，那么你手中就握有数十亿个如今已变得微小的晶体管。但它们并非一开始就如此微小，这项技术的故事至少和量子理论一样悠久。在19世纪末至20世纪初，物理学家们发现了硅和其他一些材料具有介于导体和绝缘体之间的电学特性——在特定条件下导电，其他条件下则不导电。经典物理学既无法解释此行为，也无法助力利用这些特性。量子物理学从而提供了理解这些材料所需的理论框架。玻尔原子理论中的离散能级被推广为固体的能带理论。</p>
+<p>电子不再局限于单个原子的特定能级，原子及大量材料中，电子能量的组织方式存在“能带”和“能隙”。能带理论表明，导体具有众多电子可迁移的能量级，这使得电流易于流动。而绝缘体则具有宽大的“能带隙”，阻碍电子移动。半导体拥有较小的能带隙，在特定条件下电子可跨越。任何材料的详细能带结构均可推导得出。</p>
+<p>通过求解薛定谔方程来描述量子系统，对于除了非常特殊的情况之外的所有情况都是不可能的任务。因此，固体量子物理学的艺术和科学大部分在于开发有效的近似方法。实际上，物理学中最大的子领域——凝聚态物理学——主要目的之一就是为大量原子系统近似量子物理学。基本上，任何采购或开发具有特定属性的产品、组件或成分的个人或公司，至少间接地从量子物理学研究中受益。例如，现代晶体管为了正确工作，需要满足一长串的性能要求。</p>
+<p>晶体管由约翰·巴丁、沃尔特·布拉顿和威廉·肖克利于1947年在贝尔实验室发明。尽管与今天的晶体管相比显得“大”，但它仍然只有硬币大小。其目的是放大电信号，以取代笨重且效率低得多的真空管。通过在一块小型半导体材料的表面上使用两个紧密间隔的金属接触，晶体管可以利用材料的能带特性来调节电流。在首次成功演示后，晶体管技术迅速发展。除了作为电路中必不可少的组件取代真空管外，晶体管还作为计算机的开关元件取代了真空管。到1954年，第一台“全晶体管”计算机成功制造，其余的，正如他们所说，已成为历史。</p>
+</div>
+<div class="section" id="id14">
+<h3>激光<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<p>激光曾特指LASER（即通过受激辐射实现的光放大技术），但如今它无处不在，既可用作名词，也可用作动词。虽然你不希望被任意激光照射，但每当你在超市扫描条形码时，你就是在利用激光的力量。激光运作的核心是一种被称为「具体现象名称」的现象。</p>
+<p>“受激发射。”这一过程由爱因斯坦于1917年首次描述，基于早期量子物理学的理论。</p>
+<p>回想一下，原子中的电子位于离散的能量级上。当电子改变能级时，它会吸收或发射一个光子。光子的能量恰好等于能级之间的差值。自发发射发生在处于高能态的原子随机下降到低能态时。你所看到的所有光，以及20世纪之前所见过的所有光，都是由于原子随机改变能级造成的。爱因斯坦提出，处于激发态（电子位于高能级）的原子可以被一个能量恰好匹配能级差的光子激发，从而下降到较低能态，并产生两个相同的光子。</p>
+<p>尽管爱因斯坦的理论工作，直到1950年代科学家们才能够制造出利用受激发射的设备。第一个这样的设备是由查尔斯·汤斯和他的同事们在1954年在哥伦比亚大学开发的，但它仍然不实用，仅能放大微波频率而非可见光。真正的激光首次在1960年由西奥多·H·梅曼在休斯研究实验室展示。顺便说一句，它是红色的。但尽管令人印象深刻，它仍被著名地描述为“寻找问题的解决方案”。有趣的是，如今激光的大多数应用解决了1960年时人们甚至未曾梦想过的问题。</p>
+<p>今天，激光在众多领域中得到应用，从医学和电信到制造和娱乐。它们被用来切割钢材、执行精细的眼科手术、通过光纤电缆传输信息、读取条形码、在塑料光盘上读写音乐和视频，以及创造迷人的灯光秀。我们的现代世界离不开激光，当激光应用于第二代量子技术时，其价值将持续显现。</p>
+</div>
+<div class="section" id="id15">
+<h3>原子钟<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<p>如果你曾使用过GPS（全球定位系统）导航，那么你就间接使用了原子钟。毕竟，除非你不携带任何设备，驾驶一辆二十年车龄的车子，否则几乎不可能不用到GPS。由于其名称中含有“原子”，你或许能猜到它与量子物理学有关。原子钟的发展得以实现，归功于量子物理学的进步。</p>
+<p>深入理解原子内部的量子本质。原子中的电子占据着离散的能量级，并通过吸收或发射特定频率的光在不同能级间跃迁。这对我们来说已经不新鲜了。新奇之处在于，这些能级可以通过特定手段进行操控。</p>
+<p>电场和磁场的作用下，单一能级可以发生分裂。这种分裂甚至可能源自原子内部产生的电场和磁场，因为电子本身带有电荷！这种微妙的自然分裂揭示了原子的精细结构和超精细结构。在20世纪30年代，伊西多·拉比开发了磁共振技术，使得这些特性的精确测量成为可能。
+由于能级结构是原子的固有属性，</p>
+<p>他们省略的频率会产生非常精确的“滴答”声，拉比后来建议原子可以用来定义一个极其稳定的时钟。1949年，美国国家标准局建造了第一个使用氨的原子钟。但真正革新计时技术的是1955年在英国国家物理实验室开发的基于铯的时钟。</p>
+<p>基于铯的原子钟工作原理是测量铯原子在两个特定能级之间跃迁时的频率。铯原子的最低能量超精细跃迁每秒振荡9,192,631,770次，这一频率极为稳定可靠，因此在1967年被采纳为新的秒标准，取代了之前基于地球轨道周期的标准。我们对时间的定义基于量子物理学。</p>
+<p>这些极其精确的时间计量器已被广泛应用，从同步像互联网这样的37个电信网络到测试爱因斯坦相对论的预测。然而，它们最著名的应用可能是在全球定位系统中。GPS星座中的每颗卫星都携带着多个原子钟。这些钟发送的时间信号因与接收器距离不同而产生的微小差异，使得接收器的位置能够被三角定位到几米范围内。测量距离虽难，但因光速恒定，我们可以通过时间差来计算距离。</p>
+<p>如果能准确测量时间，你就能根据旅行花了多久来估算速度和距离。原子钟是量子应用的一个典型例子。在现代世界中，这项技术已成为不可或缺的。无论是全球导航还是互联网，原子钟都展示了我们正处于量子技术革命之中——至少是第一个阶段。</p>
+</div>
+<div class="section" id="mri">
+<h3>磁共振成像（MRI）<a class="headerlink" href="#mri" title="Permalink to this heading">#</a></h3>
+<p>磁共振成像（MRI）是医学领域中的一项强大工具，能够提供身体软组织的详细且非侵入性的图像——这是传统X射线难以做到的。MRI技术的核心基于量子物理学，直接借鉴了与原子钟相关的磁共振原理。</p>
+<p>自旋的发现是量子物理学的一个重要标志，这是亚原子粒子内部的一种属性，使它们表现得像微小的磁铁。单独来看，它们非常弱，当被随机方向排列的其他粒子包围时，几乎无法检测到。然而，如果遇到足够强的磁铁，它们会与之对齐，这正是MRI机器中巨大的超导线圈磁铁发挥作用的地方。
+在MRI中，主要关注的是氢的自旋，因为我们的身体中含有大量的水。当被置于MRI机器的强磁场中时，这些自旋会与磁场对齐。随后，一个垂直于该磁场的信号被应用，</p>
+<p>导致自旋偏离原本的对齐状态。当移除信号时，自旋恢复到其原始对齐状态，但在这一过程中，它们会发出信号。这些信号，源自氢原子深处亿万计微小磁体的集体弛豫过程，正是MRI机器捕捉并转换成图像的信号。不同组织的密度和类型差异导致弛豫特性各异。</p>
+<p>这意味着从不同组织接收到的信号会有所差异。这种差异导致图像对比度增强，便于详细观察器官、肿瘤及其他结构。如果不理解原子核的自旋特性，磁共振成像（MRI）的发展就不可能实现。如今，MRI在全球范围内广泛用于诊断包括脑肿瘤和关节损伤在内的多种疾病，再次证明了量子物理学在日常生活中的实际应用价值。</p>
+</div>
+<div class="section" id="id16">
+<h3>还有更多应用……<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<p>虽然我们已经讨论了量子物理学在技术领域的一些关键应用，但实际上它的应用远不止于此。例如，核能和不幸的核武器，都是广泛应用，它们都深深植根于通过核物理学体现的量子物理学原理。没有对原子内部工作原理的了解，我们就不会有超过400座核反应堆提供全球10%的电力，也不会有超过200座研究级反应堆，这些反应堆也生产用于工业和医疗目的的放射性材料。此外，量子物理学对医疗技术的影响远不止于磁共振成像（MRI）。例如，正电子发射断层扫描（PET）使用听起来很晦涩的电子的反粒子来构建身体内部过程的图像。PET扫描通过引入少量放射性物质，这些物质在体内释放正电子并发射辐射。当这些正电子与电子相遇时，它们会相互湮灭，产生两束方向相反的伽马射线。PET扫描仪检测到这些伽马射线，并据此推断出放射性物质的分布，从而描绘出其在体内的路径。半导体技术的发展已经带来了许多科技进步，</p>
+<p>多年来，超越了普遍存在的晶体管。尽管出于上述多种原因依赖于量子物理学，量子知识在隧道二极管中发挥着双重作用。在这些设备中，电子可以‘隧道’穿过能量屏障，而不是像经典物理学所预期的那样必须越过它们。这些设备的多种版本被用于改进从圣诞灯饰、太阳能电池到激光器和温度计的各种事物。此外，量子概念和数学已经开始在传统物理学之外的领域找到应用。例如，量子生物学应用量子原理于生物过程，研究光合作用和鸟类导航，仅用经典理论描述可能不够充分。“量子”金融采用量子力学的数学方法来模拟金融市场，以更好地理解其看似随机的波动。量子物理学已更深入地融入我们的日常生活。</p>
+<p>我们可能一开始并未充分认识到，从导航世界的电子设备，到诊断治疗疾病的医疗技术，再到驱动金融系统的数学模型——量子力学的原理是我们精心构建的现代世界不可或缺的一部分。这甚至还未涉及即将到来的第二代量子技术。随着我们对量子系统的控制不断改进，更多应用将应运而生，因此这一切提出了一个问题，我们对量子物理究竟还有什么不理解的地方？</p>
+</div>
+<div class="section" id="id17">
+<h3>量子目的论<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<p>量子物理学几乎总是按年代顺序教授。确实，我在上一章就这样做了。你读到了一系列20世纪科学英雄，他们揭示了我们指尖背后的狂野而未被驯服的世界。这个故事始于1900年普朗克的能量离散假设，虽然为了介绍量子计算机我们不需要回溯那么远，但量子物理学的标准叙述通常以约翰·贝尔在1960年代关于“幽灵般”纠缠的工作达到顶点。如今，按照这个故事的发展，我们正处在尚未完全展现的新时代的边缘。</p>
+<p>与量子物理学同时发展起来的机械装置，称为量子力学，它使42名研究生能够机械地转动数学的曲柄，从而对更新颖、更极端的实验做出预测。人们常说，一代又一代的物理学家为了获得学位和教授职位，会“闭嘴并计算”，最终与下一届学生重复这一过程。量子物理学这匹野马显然已被关进马厩，但并未被驯服。</p>
+<p>当理查德·费曼不经意间提到“理解”时，他不仅是在开启他那著名的量子物理学讲座，而且无意中踏入了他曾公开嘲讽的哲学领域。在认识论——即知识本身的研究中，理解不仅仅是简单的掌握，而是一个丰富的概念，它探究了深层意义和联系。这种哲学试图阐明认识和存在的本质。对于如此宏大的任务，正如你可能预料的那样，哲学家们在甚至连“理解”这个词的定义上都存在更多的分歧而非共识。</p>
+<p>另一方面，我们都有一些直观的概念理解。在日常生活中，理解可能被比作知道如何骑自行车，但在物理学中，它具体关乎掌握使自行车移动的力。你可能并不了解平衡和运动的物理学原理，但通过感觉和经验，你就能“理解”如何骑它。</p>
+<p>当我们谈论物理学家的理解时，我们是在步入一个工坊，宇宙的机械装置尽收眼底。物理学家探寻现象背后的齿轮与杠杆，旨在直观把握事物为何如此发生。这不仅仅是了解方程式，而是能够感受它们，如同本能地顺势转弯。然而，在常规物理学中，规则却截然不同。</p>
+<p>游戏似乎变得难以捉摸。这里的理解就像试图徒手捕捉烟雾——它在你指间滑过，轻盈地舞动。经典物理学中的直观机制逐渐消失，取而代之的是抽象的数学对象与公式。你可以学习、跟随甚至运用它们，但对它们具体机制的理解似乎是不可能的。想象骑着一辆无人制造的自行车——其所有机制都隐藏着，无法揭示。</p>
+<p>如果量子物理学的种种混杂信息让你感到困惑，我要你忘掉所有关于它的知识，并记住接下来的内容。</p>
+<p>量子物理学是描述高度孤立系统的科学分支——那些不与周围其他物质随机相互作用的事物。传统上，这些系统体积较小，如原子，但现在我们能设计出在高度隔离状态下的人工系统。任何极度孤立的事物都需借助量子物理学来精确描述。这些事物所编码的信息即为量子信息。若你尝试用经典物理学或经典信息来预测或描述这些事物，结果可能会大相径庭。量子物理学并未揭示超越现实的真实本质。</p>
+<p>我们的经验表明，无论现实本质如何，它都与我们在其适用范围内视为理所当然的机械世界观截然不同。因此，若‘理解’意味着需要这样一种解释——揭示世界运转的原因与结果——那么，实际上至今无人能提供。然而，这个神话并非关于哲学，因为本书并非哲学著作。</p>
+<p>关于技术，我们将坚持使用日常词汇。即，通过使用工具，你才能真正理解其工作原理。通常，人们对于熟悉的事物不再要求解释。我们最终会对量子技术变得如此熟悉，以至于“理解”这个词将仅用于描述成功运用它的能力。正如我对TikTok的“不理解”并不妨碍它成为一个成功的应用一样，我们对量子物理的“不理解”也不妨碍构建量子计算机。</p>
+<p>如果费曼今天还活着，我想他会更好地阐释这句话。他可能会说：“量子力学不能用经典物理和信息来理解——它必须用量子信息的语言来理解。”或者，他可能会更简洁地说：“没有人讲量子信息。”确实，在他职业生涯的晚期，他说过：“自然不是经典的，该死的，如果你想模拟自然，你最好让它量子化，而且，这是一个美妙的问题，因为它看起来并不容易。”他在1981年的一次研讨会上说的这番话，常被认为是量子信息和计算的诞生地。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>谜题2：量子比特同时是0和1<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>“嗯，有些人这样走，有些人那样走。但就我而言，我个人，我更喜欢走捷径。”
+——刘易斯·卡罗尔</p>
+</div></blockquote>
+<p>你可能认为一个量子比特可以同时是0和1。</p>
+<p>或者，量子计算利用了亚原子粒子能在任何时候以多于一种状态存在的奇特能力。我几乎无法因此责怪你。毕竟，我们期待《纽约时报》、《自然》、《科学》、《新科学家》、《时代》杂志和《科学美国人》等众多媒体，都具有相当的可信度。</p>
+<p>所谓的“来源”，其实并非如此。几乎所有流行的量子计算描述都使用“同时存在0和1”的比喻。我之所以称之为比喻，是因为它并非字面上的真实。</p>
+<p>量子计算中涉及的事物可以同时表示0和1。记住，计算机内存中并不实际存储0和1。这些标签仅是为了便于我们理解。数字计算机中的每个比特是一个物理实体，能处于两种易于区分的状态。因为我们用它们执行逻辑操作，所以也可以将它们标记为“真”和“假”。现在应该清楚，“同时为真和假”是没有意义的。（在形式逻辑中，这种说法实际上是错误的。）</p>
+<p>问题甚至更糟，因为在量子计算中，量子比特（qubit）能同时处于多种状态，这与传统比特只能表示0或1有本质区别。量子比特的这种多状态特性使得量子计算机在处理特定问题时更为强大，但同时也增加了理解和控制的难度。</p>
+<p>“同时既是0又是1”这一说法虽然简化了概念，但实际上是一个极具误导性的比喻。</p>
+<div class="section" id="id19">
+<h3>如果1等于0，那么我便是教皇。<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<p>显然，我和教皇是两个不同的人。但让我们假设1等于0。那么1加1就等于0加1。由于2等于1，因此我和教皇实际上是同一个人。</p>
+<p>你已经察觉到问题所在了，对吧？从一个错误的假设出发，任何结论都可以被证明为真。这个幽默的小例子是由著名逻辑学家伯特兰·罗素提出的，虽然他当时并未涉及量子比特的话题。然而，显而易见的是，从这样一个明显的错误前提出发，我们无法推导出任何有意义的结论。</p>
+<p>考虑接下来的逻辑推理。首先，如果一个量子比特能同时表示0和1，那么两个量子比特就能同时表示00、01、10和11。三个量子比特就能同时表示000、001、010、011、100、101、110和111。以此类推，你可以想象得到。就像你购买的有机面包上迅速蔓延的霉菌一样，这种增长是指数级的！</p>
+<p>n个比特的排列组合方式总数是2的n次方。n的幂次—2的n次方，可能是一个极其巨大的数字。如果n是300，那么2的300次方超过了宇宙中所有原子的总数！想象一下。仅仅抛掷硬币300次，它们可能出现的排列方式数不胜数。而300个量子比特可以同时涵盖所有这些可能性。相信这一点后，量子计算机指数级的存储与计算能力便不难理解。那简直如同魔法一般。然而，量子比特的实际运作并非如此。显然，关键在于理解量子比特“同时处于0和1状态”的特性。</p>
+</div>
+<div class="section" id="id20">
+<h3>急速升级<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<p>让我们跳到结尾，只停留片刻。我要告诉你量子比特究竟是什么，只为表明我坦诚相告。如果你在大学正式学习量子计算课程，你会了解到量子比特是复线性空间中的四维向量。这听起来复杂，但其实只是术语。向量即数字的序列，空间是由向量组成的集合，因其可进行线性运算（如相加）而得名。而“复”指的是包含虚数单位（即-1的平方根）的数字。向量空间在多个领域都有应用，如金融和数据分析。</p>
+<p>从科学领域到计算机图形学，尽管“虚数”一词与-1的平方根相关联，但复数概念也有着非常实际的应用。它们的美在于能够简化并使跨多个学科的复杂数学问题更易于处理，从流体动力学到电气工程等多个领域。因此，复数及其应用本身并不神秘。在量子计算中使用复数及其应用的规则也并不复杂。然而，我在这里会停下来，不再深入讨论数学细节，因为我相信你阅读本文的目的是为了阅读文字和句子，而不是符号和方程式。</p>
+<p>简而言之，量子比特不简单地由0和1的简单组合表示。然而，它们确实存在一些限制，这些限制阻碍了它们发挥更大的作用。这些数值可以连续取值，因此，它们确实比单个比特的二元选择更为灵活多变。如果在任何时候感到困惑，记住量子比特实际上就是一组复数，并且存在一个非常坚实的数学框架来处理这些问题。</p>
+</div>
+<div class="section" id="id21">
+<h3>给所有事物都冠以“量子”之名<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<p>在漫威电影《蚁人2：黄蜂女现身》中，“量子”一词被频繁滥用，以至于保罗·路德（饰演蚁人）差点打破第四面墙，替观众发问：“你们是不是什么都加‘量子’？”虽然这在电影情境中本意是玩笑。</p>
+<p>在电影对话中，现实世界的答案是断然肯定的。这是一个内部笑话：成为量子信息理论家，就如同打开一本经典的信息理论教科书，然后在每个定义和定理前都加上“量子”二字。尽管我们有量子信息、量子熵、量子通道、量子编码等等，但我们并未坚持使用“量子比特”。实际上，我们很快就摒弃了这一概念。</p>
+<p>量子比特是在1995年的一篇物理学论文中被引入的，标题为《量子编码》。作者本杰明·舒马赫在第51节中提到：在我们的基本编码系统中，我们选择双层自旋系统，我们称之为‘量子位’或量子比特。量子比特将作为我们量子信息的基本单位，所有信号将通过量子比特序列进行编码。”突然！量子比特以权威姿态登场！但等等……在致谢部分中隐藏了什么秘密？“‘量子比特’这一术语是在作者与W.K.伍特斯多次引人入胜且富有价值的对话中玩笑中提出的，并成为这项工作的最初动力。”</p>
+<p>哈哈！教训就是：看笑话得看到底。</p>
+</div>
+<div class="section" id="id22">
+<h3>用量子比特写作<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<p>通常，你会看到量子比特用一个垂直的竖线“|”和一个右角括号“⟩”来表示，这两个符号结合形成了一个被称为“ket”的东西。ket内部总是有一个标签，就像数学中的变量用字母符号表示一样（比如“设x为…”），一个未指定的量子比特通常用符号|𝜓⟩表示。这种被称为狄拉克符号的表示法，在众多表示向量的方式中并不特别，但物理学家发现它很方便。由于量子计算源于这一领域，因此采用了这种符号。</p>
+<p>另一个需要注意的是“状态”这个词的使用，它在物理学和计算中都被过度使用，容易引起混淆。对象|𝜓⟩通常被称为量子比特的状态，或者说量子比特处于状态|𝜓⟩。有时|𝜓⟩被视为等同于编码信息的物理设备。因此，你会听到关于物理量子比特的状态的说法。这更多的是一种语言上的便利，而不是其他。虽然在原则上使用这种简写没有错，但它可能导致误解，比如事物同时存在于两个地方，因此需要谨慎。</p>
+<p>想象一下，我给你一个带有信息的USB闪存盘。可以说我给了你几个比特，就好像信息是一个物理量，而USB闪存盘是包含我的信息的比特。但这只是讨论这个问题的一种方便且经济的方式。实际上，我给你的是一个可以代表一系列二进制选项的物理设备。我将我的信息编码到这些选项中，你通过查看它来解码信息。USB闪存盘的状态可以用我的信息来描述，但它并不是我的信息本身。</p>
+<p>同样的逻辑也适用于量子比特。我可以将量子比特编码到物理设备中。出于方便，我们说这些设备是量子比特。然后，“量子比特处于状态|𝜓⟩”这句话可能看起来意味着|𝜓⟩是一个物理量。实际上，|𝜓⟩，即量子信息，只能描述物理设备的状态——无论它当前处于什么配置。这种配置可能是自然的，也可能是故意安排的，这就是将信息|𝜓⟩编码到物理设备的过程。</p>
+<p>就像将比特编码到USB闪存盘的过程被称为“写入”，将量子比特编码到某种量子设备的过程就是写入量子数据。在量子物理学的旧术语中，这与“准备”一个量子系统相同，其中|𝜓⟩总结了将物理系统带入特定配置的可重复实验室程序。过去，这是为了实验目的。现在，这是为了计算目的。</p>
+<p>所有这些都是说，在任何专业领域内，人们在专业术语的使用上常常不够严谨。量子计算的问题在于，这种不够严谨的术语是唯一被外界所了解的部分，而这个领域本身仍然高度专业化。当这些术语与我们的日常世界观结合时，便产生了许多奇怪的误解。</p>
+</div>
+<div class="section" id="id23">
+<h3>叠加态<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<p>如前所述，一个量子比特就是一对数字。数字对有无数个，但其中也有一些特别的存在。例如，对(1,0)和(0,1)就相当特别。实际上，它们非常特殊，以至于在狄拉克符号中被赋予了专属符号：|0⟩和|1⟩。在众多选项中，这一选择是为了维持与比特0和1的关联。</p>
+<p>另一对通常拥有专属符号的数字是表示为(1,1)。这个状态用符号表示为 |+⟩，通常被称为“加号”态。为什么是加号呢？啊，我们终于到达了叠加态和“同时是0和1”的起源。这是我要你做的一项数学运算。(1,0) 加上 (0,1) 等于多少？正确，结果是(1,1)。用我们的符号写出来，|+⟩ = |0⟩ + |1⟩。量子比特不是处于 |0⟩ 态，也不是处于 |1⟩ 态。</p>
+<p>无论我们如何操作这个量子比特，似乎都会同时影响|0⟩和|1⟩。所以，它确实看起来像是0和1的结合。当然，实际情况比这更复杂。</p>
+<p>那么，如何物理地编码状态|+⟩呢？简单来说，方程暗示首先编码0，然后编码1，最后将它们相加。这听起来合理，但实际上是不可能的。在量子比特的物理编码或处理过程中，从未发生过任何实际的加法运算。这种写法仅是为了方便科学家在纸上描述量子比特的状态。将状态|+⟩替换为|0⟩ + |1⟩是学生在手动计算中学习的一个中间步骤。量子计算机既做不到这一点，也无需这么做。量子计算机在其内存中保存的就是|+⟩，仅此而已。</p>
+<p>任何不是(1,0)或(0,1)的数字对都可以写成其他形式。作为他们两者的一种组合状态。这样的状态被称为叠加态（量子物理中的特殊状态），而术语被曲解为诸如“量子比特处于叠加状态”之类的表达。你或许能想象到，或者已经见过，对这种说法的许多误解。这些词汇诱使我们认为处于叠加状态的量子比特同时存在于多种状态之中。然而，最简单的真实解释，尽管不那么引人入胜，仅仅是“处于叠加状态的量子比特并非以|0⟩或|1⟩单一状态编码的。”这正是我从未被邀请回到那些热衷于量子炒作的播客的原因……</p>
+<p>此时，你可能会疑惑为什么我们使用标签0如果它们容易引起混淆，那么首先考虑的是1。对此有一个很好的理由，当我们尝试读取量子比特时，这个理由就显现出来了。</p>
+</div>
+<div class="section" id="id24">
+<h3>量子信息的读取<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p>抱歉，量子信息你读不了。在经典物理学说了算的世界里，阅读是不可能的。</p>
+<p>数据是直接明了的。如果你保存了一份文档，当你之后打开它时，你预期找到相同的内容。此外，阅读内容即直接感知编码信息的符号。它如此明显和直观，我们几乎不会多想。</p>
+<p>思考一下。但涉及到量子数据时，情况大不相同。在经典物理学——以及日常生活中——测量是基础。</p>
+<p>确定事物固有属性（如重量、尺寸、温度等）的过程。用校准准确的仪器，我们可以直接读取这些数值。</p>
+<p>这些属性始终存在。我们可以将信息编码到这些属性中，若其他条件不变，稍后可以解码这些信息。</p>
+<p>现在，让我们思考一下原子。它非常微小，微小到难以想象的程度。尽管没有人见过原子，但有大量的无可辩驳的证据证明原子的存在。我们肉眼所见的信息，是通过大型仪器显示的。但这些信息是经典的，以数字电子方式表示为比特。简而言之，任何试图从量子系统获取信息的行为，结果都是得到比特而非量子比特。我们无法简单地直接“读取”量子比特的状态。在物理学中，围绕这一概念还有许多其他专业术语。</p>
+<p>涉及测量、可观测性和状态塌缩——这些概念对量子计算的实际应用并不关键。我们只需理解，量子数据的读取结果是经典数据——即n个量子位信息读取后转化为n个比特的信息。例如，考虑一个量子位的信息——即某个状态|𝜓⟩。</p>
+<p>从之前的讨论来看，假设信息被编码进了原子的能级中。任何试图通过测量原子的能量来“读取”该原子的尝试，都将导致一个二元结果。例如，原子会衰变并释放光子，或不衰变。这就是一个比特的信息。由于|𝜓⟩是由两个连续变化的数字确定的，一个比特远远不足以确定具体是哪一对数字。换句话说，你无法读取量子信息。</p>
+</div>
+<div class="section" id="id25">
+<h3>量子测量<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<p>在前面的例子中，想象一个原子被用来编码信息。</p>
+<p>信息的量子比特处于其能量状态中。读取时，将产生两种可能的结果之一。如果原子处于高能量状态，它会释放该能量，以光子的形式。现在它失去了能量，因此必然处于低能量状态。尽管存在多种巧妙的方法来写入和读取物理系统中的量子比特，但这种情况仍无法避免。读取量子比特的结果常被描述为销毁、删除、坍塌等听起来较为负面的动词。更直接地说，物理系统不再承载量子数据。</p>
+<p>从经典测量概念过渡至量子理论之一是物理学和哲学领域的一次重大飞跃，也是科学家和哲学家争论不休的话题。因此，我不打算尝试给出完整答案来解释原因。</p>
+<p>量子比特的读取方式是这样的，不过我会简要说明一下。即使测量大型经典系统，通常也具有侵入性。</p>
+<p>例如活检就很明显。对于一个轮胎，我们假设其内部空气具有一定压力，无论是否进行测量，这一压力值都是固定的。要实际测量空气压力，需打开阀门，使仪表指针移动。释放至少一点空气，实际上改变了我们试图测量的压力值。</p>
+<p>你可能会直觉地认为，对一个系统的了解越多，你越是改变，将这一理念推向极致，便得到了量子物理学。我们可以操纵量子物体而不干扰它们，但这样我们就无法从中获取任何信息。我们可以以微小的干扰为代价获取少量信息，但要提取尽可能多的信息，则必须承受最大程度的干扰。想象一下，一个轮胎压力计会释放所有空气，仅报告轮胎之前是否已充满。你仅获得一条信息，却总是留下一个瘪掉的轮胎。虽然这是个很好的比喻，但我保证量子计算机的实际用途远超其表面所见。</p>
+</div>
+<div class="section" id="id26">
+<h3>一场机遇与挑战的游戏<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<p>到目前为止，我们知道量子比特编码了量子数据，但只能揭示较少的经典数据。但你或许已察觉到一丝不妥——结果很可能以某种方式依赖于量子信息|𝜓⟩。否则，这有什么意义呢？确实如此。然而，并不是结果本身依赖于|𝜓⟩，而是其解读方式依赖于|𝜓⟩。</p>
+<p>量子物理学并非决定论理论，它是一种基于概率的理论。它为我们提供了对实验可能结果的概率的极其精确的预测值，但它并没有告诉我们每次实验会出现哪一个具体结果。具体来说，当我们读取一个量子比特时，我们接收到的经典比特是随机的。回想之前的叠加态，这种状态，|+⟩ = |0⟩ + |1⟩。当读取时，它将以相等的概率输出比特0或比特1。你或许可以比喻为量子硬币——一个完全无偏的随机事件。实际上，这正是商业上可用的QRN，即量子随机数生成器的基础。</p>
+<p>在本书的结尾，这将成为我们的口头禅，但是我们将会更深入地理解这一点。量子比特是一对数字。我们用符号（x,y）来表示这对数字。如果这对数字中的任何一个值为零，读取量子比特的结果将是确定的。</p>
+<p>总是确定地读出0或1。也就是说，读取状态|0⟩读出0，读取状态|1⟩读出1。其他状态则不可避免地带有随机性。如果x大于y，结果倾向于0。有一个数学上精确的规则，即量子力学中的波恩规则，但由于涉及过多的符号，这里不便详细展示。你已经大致了解了这一概念。</p>
+</div>
+<div class="section" id="id27">
+<h3>为什么要关心抛硬币呢？<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<p>如果量子计算基于这种不确定性，它如何发挥作用？这正是量子算法丰富性的体现。量子算法围绕读取61个量子比特时的不确定性进行设计。算法设计者的任务是提高正确解决方案的概率，并降低错误解决方案的概率。因此，尽管单个量子比特的测量结果不确定，量子算法作为一个整体仍能引导计算走向有用的结果。这是下一个神话主题的内容，关于算法还有更多探讨。</p>
+<p>总结来说，量子比特并非“同时是0和1”，而是……</p>
+<p>量子比特的状态由一组数字表示。这种数学框架丰富，允许进行比经典比特更广泛的操作。编码和读取量子比特涉及在物理系统中编码和解码，但与经典比特相比有显著的物理和信息处理差异。最值得注意的是，“读取”量子比特是一个随机事件，它在产生经典信息的同时破坏了量子信息。量子比特状态影响结果的概率，但并不完全决定结果。</p>
+<p>在探索过程中逐渐显露无遗。量子计算的魅力、挑战和潜在力量，在于巧妙驾驭这些复杂性以执行有用计算的能力。</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="quantum-computers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">为什么你不需要了解量子计算机</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bing_files_automate.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">批量下载文件并存入Zotero（cn.bing.com）</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foreword">前言 Foreword</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-age">量子时代 The Quantum Age</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">算法与程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">量子询问（？）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">瑞士军刀电脑</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qpu">QPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">模拟一切</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">收获</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子计算从何而来？</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子计算中的“量子”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">量子计算中的“计算”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">量子计算简史</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">谜题1：无人理解量子这玩意</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">你已经在使用量子技术了</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">晶体管</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">激光</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">原子钟</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mri">磁共振成像（MRI）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">还有更多应用……</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">量子目的论</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">谜题2：量子比特同时是0和1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">如果1等于0，那么我便是教皇。</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">急速升级</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">给所有事物都冠以“量子”之名</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">用量子比特写作</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">叠加态</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">量子信息的读取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">量子测量</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">一场机遇与挑战的游戏</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">为什么要关心抛硬币呢？</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By W先森
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

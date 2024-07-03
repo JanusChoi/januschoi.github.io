@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; 歪思大数据</title>
+    <title>为什么你不需要了解量子计算机 &#8212; 歪思大数据</title>
   
   
   
@@ -60,9 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Untitled';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quantum-computers';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="为什么你不需要了解量子计算机-译文" href="quantum-computers-trans.html" />
+    <link rel="prev" title="2022年总结：迷途知返" href="2022FullYear.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,8 +170,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="2022FullYear.html">2022年总结：迷途知返</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">唯手熟尔</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantum-computers.html">为什么你不需要了解量子计算机</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">为什么你不需要了解量子计算机</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantum-computers-trans.html">为什么你不需要了解量子计算机-译文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bing_files_automate.html">批量下载文件并存入Zotero（cn.bing.com）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apache_top_levels.html">Apache顶级项目信息提取</a></li>
@@ -248,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2FUntitled.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2Fquantum-computers.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +280,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Untitled.ipynb" target="_blank"
+      <li><a href="_sources/quantum-computers.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -360,7 +362,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>为什么你不需要了解量子计算机</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -369,9 +371,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chris-ferrie">作者 Chris Ferrie</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -382,132 +384,50 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="k">def</span> <span class="nf">csv_to_sql_insert</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">):</span>
-    <span class="n">sql_inserts</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># 读取5行后停止</span>
-                <span class="k">break</span>
-            <span class="c1"># 解析tags字段</span>
-            <span class="n">tags</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span>
-            <span class="n">tag_name</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
-
-            <span class="c1"># 生成SQL插入语句</span>
-            <span class="n">sql_insert</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">INSERT INTO public.web_navigation (</span>
-<span class="s2">    name, </span>
-<span class="s2">    title, </span>
-<span class="s2">    content, </span>
-<span class="s2">    detail, </span>
-<span class="s2">    url, </span>
-<span class="s2">    image_url, </span>
-<span class="s2">    thumbnail_url, </span>
-<span class="s2">    collection_time, </span>
-<span class="s2">    tag_name, </span>
-<span class="s2">    website_data, </span>
-<span class="s2">    star_rating, </span>
-<span class="s2">    category_name</span>
-<span class="s2">) VALUES (</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    E&#39;### What is </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">n</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">n### How can I use </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">nPlease visit </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;website&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> for more information.&#39;,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;website&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    NULL,</span>
-<span class="s2">    NULL,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">tag_name</span><span class="si">}</span><span class="s2">&#39;,</span>
-<span class="s2">    NULL,</span>
-<span class="s2">    0,</span>
-<span class="s2">    &#39;</span><span class="si">{</span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="s1">&#39;uncategorized&#39;</span><span class="si">}</span><span class="s2">&#39;</span>
-<span class="s2">);</span>
-<span class="s2">&quot;&quot;&quot;</span>
-            <span class="n">sql_inserts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sql_insert</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">sql_inserts</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用示例</span>
-<span class="n">csv_file_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/januswing/data/site4update.csv&#39;</span>  <span class="c1"># 替换为您的CSV文件路径</span>
-<span class="n">sql_statements</span> <span class="o">=</span> <span class="n">csv_to_sql_insert</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">)</span>
-
-<span class="c1"># 打印生成的SQL语句</span>
-<span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">sql_statements</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INSERT INTO public.web_navigation (
-    name, 
-    title, 
-    content, 
-    detail, 
-    url, 
-    image_url, 
-    thumbnail_url, 
-    collection_time, 
-    tag_name, 
-    website_data, 
-    star_rating, 
-    category_name
-) VALUES (
-    &#39;chatgpt&#39;,
-    &#39;ChatGPT&#39;,
-    &#39;Engaging AI conversations and task automation.&#39;,
-    E&#39;### What is ChatGPT?\n\nEngaging AI conversations and task automation.\n\n### How can I use ChatGPT?\n\nPlease visit https://chatgpt.com for more information.&#39;,
-    &#39;https://chatgpt.com&#39;,
-    NULL,
-    NULL,
-    &#39;2024-07-02 17:34:15&#39;,
-    &#39;AI, Chat, ChatGPT, Conversation, Insights, Automation, Engagement, Virtual assistant, Language, Support&#39;,
-    NULL,
-    0,
-    &#39;ai&#39;
-);
-
-
-INSERT INTO public.web_navigation (
-    name, 
-    title, 
-    content, 
-    detail, 
-    url, 
-    image_url, 
-    thumbnail_url, 
-    collection_time, 
-    tag_name, 
-    website_data, 
-    star_rating, 
-    category_name
-) VALUES (
-    &#39;openai-sora&#39;,
-    &#39;OpenAI Sora&#39;,
-    &#39;AI model creating scenes from text.&#39;,
-    E&#39;### What is OpenAI Sora?\n\nAI model creating scenes from text.\n\n### How can I use OpenAI Sora?\n\nPlease visit https://openai.com/sora for more information.&#39;,
-    &#39;https://openai.com/sora&#39;,
-    NULL,
-    NULL,
-    &#39;2024-07-02 17:34:15&#39;,
-    &#39;AI, video creation, text-to-video, imagination, storytelling, visual content&#39;,
-    NULL,
-    0,
-    &#39;ai&#39;
-);
-</pre></div>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>为什么你不需要了解量子计算机<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>前段时间刚看到诸如：如果量子计算机出来了，那是不是没有GPU什么事了之类的提问。感觉又是一个毫无依据的闪念。过了几天之后看到格雷格·伊根的推上转发了这样一篇arXiv上的论文，标题是：What You Shouldn’t Know About Quantum Computers。直接翻译过来就是为什么你不需要了解量子计算机。</p>
+<p>早先在微软总裁纳德拉的书《刷新》我们读到过未来的三大变革分别是：混合现实、人工智能和量子计算。那为什么现在这位作者Chris Ferrie会跳出来说你不需要了解呢？论文标题一下子就抓住了我的注意力，也趁此机会尝试用AI辅助阅读可以进行到何种地步。</p>
+<p>先将用到的工具列出来：</p>
+<ul class="simple">
+<li><p>Perplexity + GPT4o</p></li>
+<li><p>Kimi</p></li>
+<li><p>Obsidian</p></li>
+<li><p>Obsidian Copilot（插件）</p></li>
+<li><p>沉浸式阅读（浏览器插件）</p></li>
+</ul>
+<hr class="docutils" />
+<p>在翻译Foreword的时候发现，前面将pdf丢给kimi然后让它全文翻译的效果是非常糟糕的，除了大量不知所云之外，还有翻译错误以及漏翻译几句的问题。因此想要企图通过kimi直接给出全文译文是不太现实的。还有一些比较口语化的表达，沉浸式翻译或者是kimi都做得不好，比如：</p>
+<blockquote>
+<div><p>原文：Sorry, no, that’s too good to be true</p>
+<p>Kimi：对不起，不是的，那太好了，不可能是真的</p>
+<p>沉浸OpenAI翻译：抱歉，不是的，那太美好了，不可能</p>
+<p>最终我的翻译：很遗憾，这似乎有点过于理想化</p>
+</div></blockquote>
+<p>另外还有一些句子字面上的意思很难翻译，通常可能还有稍微扩充下，比如：</p>
+<blockquote>
+<div><p>原文：There’s one amplitude for each thing you could possibly find the system doing when you look.</p>
+<p>Kimi：有一个幅度对应于你查看系统时可能发现它在做的每一件事。</p>
+<p>沉浸OpenAI翻译：当你观察时，每个可能找到系统在做的事情都有一个振幅。</p>
+<p>最终需添加译注：对于系统在任何可能状态下的行为，都存在一个幅度。这意味着，无论你观察到什么，系统中的动作总是具有某种强度或程度。例如，当你观察到一张 JPEG 图像时，它的亮暗程度就是该图像在整个色彩空间内所占据的位置和强度。同样地，当你听到一首 FLAC 音乐时，它的音量也是该音乐在整个声音范围内所占据的位置和强度。这些幅度反映了系统（即图像或音频）中信息流动方式以及其相关属性（如色彩深浅、声音高低等）。因此，通过分析这些幅值来理解系统行为非常重要。</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="section" id="chris-ferrie">
+<h2>作者 Chris Ferrie<a class="headerlink" href="#chris-ferrie" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Chris_Ferrie">克里斯·费里 - 维基百科 — Chris Ferrie - Wikipedia</a></p>
+<p>这是一个有趣作者，且看本文推荐他的几本书的书名：</p>
+<ul class="simple">
+<li><p>Great Quotes from Great Scientists: Quotes, Lessons, and Universal Truths from the World’s Greatest Scientific Minds
+伟大科学家的伟大语录：来自世界最伟大科学思想家的语录、教训和普世真理</p></li>
+<li><p>Quantum Bullsh*t: How to Ruin Your Life With Advice From Quantum Physics
+量子胡说八道：如何用量子物理的建议毁掉你的生活</p></li>
+<li><p>42 Reasons To Hate The Universe (And One Reason Not To)
+讨厌宇宙的 42 个理由（以及一个不讨厌的理由）</p></li>
+<li><p>Where Did The Universe Come From? And Other Cosmic Questions
+宇宙是从哪里来的？以及其他宇宙问题</p></li>
+</ul>
+<p>这些书名都蛮有意思，看起来有点幽默又有点较真。</p>
+<p>翻开Chris的维基百科，你可以看到他有一整个系列的写给孩子的科普书籍，比如《Quantum Physics for Babies》（给婴儿的量子物理学）。同时他也是一位加拿大物理学家、数学家、研究员，一直在悉尼科技大学工程量子系统中心担任高级讲师。</p>
 </div>
 </div>
 
@@ -520,16 +440,16 @@ INSERT INTO public.web_navigation (
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "py37"
+            mode: "python"
         },
         kernelOptions: {
-            name: "py37",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'py37'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -542,6 +462,24 @@ INSERT INTO public.web_navigation (
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="2022FullYear.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2022年总结：迷途知返</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quantum-computers-trans.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">为什么你不需要了解量子计算机-译文</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -559,9 +497,9 @@ INSERT INTO public.web_navigation (
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chris-ferrie">作者 Chris Ferrie</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
