@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>万方下载论文重命名 &#8212; 歪思大数据</title>
+    <title>&lt;no title&gt; &#8212; 歪思大数据</title>
   
   
   
@@ -60,11 +60,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'wanfang_pdf_rename';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Untitled';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="链接生成PDF并保存Zotero" href="anythingToPDF.html" />
-    <link rel="prev" title="Apache顶级项目信息提取" href="apache_top_levels.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,10 +168,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="2022FullYear.html">2022年总结：迷途知返</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">唯手熟尔</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bing_files_automate.html">批量下载文件并存入Zotero（cn.bing.com）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apache_top_levels.html">Apache顶级项目信息提取</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">万方下载论文重命名</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wanfang_pdf_rename.html">万方下载论文重命名</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anythingToPDF.html">链接生成PDF并保存Zotero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="word2pdf.html">Word文档资料整理工作流</a></li>
 <li class="toctree-l1"><a class="reference internal" href="embeding_test.html">让GPT帮你读文档：一种简单的实现方法</a></li>
@@ -248,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2Fwanfang_pdf_rename.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/JanusChoi/personal-data-automation/issues/new?title=Issue%20on%20page%20%2FUntitled.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/wanfang_pdf_rename.ipynb" target="_blank"
+      <li><a href="_sources/Untitled.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -347,7 +345,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -358,11 +358,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>万方下载论文重命名</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -372,24 +380,131 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>万方下载论文重命名<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>万方直接下载的论文原文pdf文件名会变成一串编码，目测可解码，迅速批量操作如下</p>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">urllib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;/Users/januswing/Downloads&quot;</span> <span class="c1"># 存放pdf的路径</span>
-<span class="n">all_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">all_files</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s1">&#39;%&#39;</span> <span class="ow">in</span> <span class="n">file</span> <span class="ow">and</span> <span class="n">file</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span><span class="p">:</span> <span class="c1"># 这里条件是文件名中包含 % 且后缀为pdf，可根据需要修改</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1"># 有些文件名包含 / 会导致报错，因此需要替换掉</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">))</span> <span class="c1"># 修改为解码后文件名即可</span>
+<span class="k">def</span> <span class="nf">csv_to_sql_insert</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">):</span>
+    <span class="n">sql_inserts</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># 读取5行后停止</span>
+                <span class="k">break</span>
+            <span class="c1"># 解析tags字段</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span>
+            <span class="n">tag_name</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+
+            <span class="c1"># 生成SQL插入语句</span>
+            <span class="n">sql_insert</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">INSERT INTO public.web_navigation (</span>
+<span class="s2">    name, </span>
+<span class="s2">    title, </span>
+<span class="s2">    content, </span>
+<span class="s2">    detail, </span>
+<span class="s2">    url, </span>
+<span class="s2">    image_url, </span>
+<span class="s2">    thumbnail_url, </span>
+<span class="s2">    collection_time, </span>
+<span class="s2">    tag_name, </span>
+<span class="s2">    website_data, </span>
+<span class="s2">    star_rating, </span>
+<span class="s2">    category_name</span>
+<span class="s2">) VALUES (</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    E&#39;### What is </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">n</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">n### How can I use </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">nPlease visit </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;website&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> for more information.&#39;,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;website&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    NULL,</span>
+<span class="s2">    NULL,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">tag_name</span><span class="si">}</span><span class="s2">&#39;,</span>
+<span class="s2">    NULL,</span>
+<span class="s2">    0,</span>
+<span class="s2">    &#39;</span><span class="si">{</span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="s1">&#39;uncategorized&#39;</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">);</span>
+<span class="s2">&quot;&quot;&quot;</span>
+            <span class="n">sql_inserts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sql_insert</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sql_inserts</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用示例</span>
+<span class="n">csv_file_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/januswing/data/site4update.csv&#39;</span>  <span class="c1"># 替换为您的CSV文件路径</span>
+<span class="n">sql_statements</span> <span class="o">=</span> <span class="n">csv_to_sql_insert</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">)</span>
+
+<span class="c1"># 打印生成的SQL语句</span>
+<span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">sql_statements</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INSERT INTO public.web_navigation (
+    name, 
+    title, 
+    content, 
+    detail, 
+    url, 
+    image_url, 
+    thumbnail_url, 
+    collection_time, 
+    tag_name, 
+    website_data, 
+    star_rating, 
+    category_name
+) VALUES (
+    &#39;chatgpt&#39;,
+    &#39;ChatGPT&#39;,
+    &#39;Engaging AI conversations and task automation.&#39;,
+    E&#39;### What is ChatGPT?\n\nEngaging AI conversations and task automation.\n\n### How can I use ChatGPT?\n\nPlease visit https://chatgpt.com for more information.&#39;,
+    &#39;https://chatgpt.com&#39;,
+    NULL,
+    NULL,
+    &#39;2024-07-02 17:34:15&#39;,
+    &#39;AI, Chat, ChatGPT, Conversation, Insights, Automation, Engagement, Virtual assistant, Language, Support&#39;,
+    NULL,
+    0,
+    &#39;ai&#39;
+);
+
+
+INSERT INTO public.web_navigation (
+    name, 
+    title, 
+    content, 
+    detail, 
+    url, 
+    image_url, 
+    thumbnail_url, 
+    collection_time, 
+    tag_name, 
+    website_data, 
+    star_rating, 
+    category_name
+) VALUES (
+    &#39;openai-sora&#39;,
+    &#39;OpenAI Sora&#39;,
+    &#39;AI model creating scenes from text.&#39;,
+    E&#39;### What is OpenAI Sora?\n\nAI model creating scenes from text.\n\n### How can I use OpenAI Sora?\n\nPlease visit https://openai.com/sora for more information.&#39;,
+    &#39;https://openai.com/sora&#39;,
+    NULL,
+    NULL,
+    &#39;2024-07-02 17:34:15&#39;,
+    &#39;AI, video creation, text-to-video, imagination, storytelling, visual content&#39;,
+    NULL,
+    0,
+    &#39;ai&#39;
+);
+</pre></div>
 </div>
 </div>
 </div>
@@ -425,24 +540,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="apache_top_levels.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Apache顶级项目信息提取</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="anythingToPDF.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">链接生成PDF并保存Zotero</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
@@ -452,6 +549,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
